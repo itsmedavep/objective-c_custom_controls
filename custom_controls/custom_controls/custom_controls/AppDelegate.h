@@ -1,5 +1,5 @@
 //
-//  NSView+DE_Sidebar.h
+//  AppDelegate.h
 //  custom_controls
 //
 //  Created by David Palmer on 6/17/15.
@@ -8,8 +8,8 @@
 
 #import <Cocoa/Cocoa.h>
 
-@interface NSView (DE_Sidebar)
+@interface AppDelegate : NSObject <NSApplicationDelegate>
 
--(void) drawRect:(NSRect)frame;
 
 @end
+

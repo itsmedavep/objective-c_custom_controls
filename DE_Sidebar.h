@@ -1,5 +1,5 @@
 //
-//  NSView+DE_Sidebar.h
+//  DE_Sidebar.h
 //  custom_controls
 //
 //  Created by David Palmer on 6/17/15.
@@ -8,7 +8,7 @@
 
 #import <Cocoa/Cocoa.h>
 
-@interface NSView (DE_Sidebar)
+@interface DE_Sidebar : NSView
 
 -(void) drawRect:(NSRect)frame;
 
