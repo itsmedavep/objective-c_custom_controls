@@ -6,6 +6,7 @@
 //  Copyright (c) 2015 discode enterprises. All rights reserved.
 //
 
+#import <Foundation/Foundation.h>
 #import <Cocoa/Cocoa.h>
 
 @interface DE_Sidebar : NSView
