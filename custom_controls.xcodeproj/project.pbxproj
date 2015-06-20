@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2444438E1B35DDDC00E725A9 /* DE_Drawing.m in Sources */ = {isa = PBXBuildFile; fileRef = 2444438D1B35DDDC00E725A9 /* DE_Drawing.m */; };
 		246ECB0F1B325CEF00C2129D /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 246ECB0E1B325CEF00C2129D /* AppDelegate.m */; };
 		246ECB111B325CEF00C2129D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 246ECB101B325CEF00C2129D /* main.m */; };
 		246ECB131B325CEF00C2129D /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 246ECB121B325CEF00C2129D /* Images.xcassets */; };
@@ -26,6 +27,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2444438C1B35DDDC00E725A9 /* DE_Drawing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DE_Drawing.h; sourceTree = "<group>"; };
+		2444438D1B35DDDC00E725A9 /* DE_Drawing.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DE_Drawing.m; sourceTree = "<group>"; };
 		246ECB081B325CEF00C2129D /* custom_controls.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = custom_controls.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		246ECB0C1B325CEF00C2129D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		246ECB0D1B325CEF00C2129D /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -61,6 +64,8 @@
 		246ECAFF1B325CEF00C2129D = {
 			isa = PBXGroup;
 			children = (
+				2444438C1B35DDDC00E725A9 /* DE_Drawing.h */,
+				2444438D1B35DDDC00E725A9 /* DE_Drawing.m */,
 				246ECB311B32685400C2129D /* DE_Sidebar.h */,
 				246ECB321B32685400C2129D /* DE_Sidebar.m */,
 				246ECB0A1B325CEF00C2129D /* custom_controls */,
@@ -218,6 +223,7 @@
 				246ECB331B32685400C2129D /* DE_Sidebar.m in Sources */,
 				246ECB111B325CEF00C2129D /* main.m in Sources */,
 				246ECB0F1B325CEF00C2129D /* AppDelegate.m in Sources */,
+				2444438E1B35DDDC00E725A9 /* DE_Drawing.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -407,6 +413,7 @@
 				246ECB271B325CEF00C2129D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		246ECB281B325CEF00C2129D /* Build configuration list for PBXNativeTarget "custom_controlsTests" */ = {
 			isa = XCConfigurationList;
@@ -415,6 +422,7 @@
 				246ECB2A1B325CEF00C2129D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
