@@ -14,6 +14,7 @@
 		246ECB161B325CEF00C2129D /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 246ECB141B325CEF00C2129D /* MainMenu.xib */; };
 		246ECB221B325CEF00C2129D /* custom_controlsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 246ECB211B325CEF00C2129D /* custom_controlsTests.m */; };
 		246ECB331B32685400C2129D /* DE_Sidebar.m in Sources */ = {isa = PBXBuildFile; fileRef = 246ECB321B32685400C2129D /* DE_Sidebar.m */; };
+		24BF09AB1B360EBB002AB758 /* DE_Background.m in Sources */ = {isa = PBXBuildFile; fileRef = 24BF09AA1B360EBB002AB758 /* DE_Background.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -41,6 +42,8 @@
 		246ECB211B325CEF00C2129D /* custom_controlsTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = custom_controlsTests.m; sourceTree = "<group>"; };
 		246ECB311B32685400C2129D /* DE_Sidebar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DE_Sidebar.h; sourceTree = "<group>"; };
 		246ECB321B32685400C2129D /* DE_Sidebar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DE_Sidebar.m; sourceTree = "<group>"; };
+		24BF09A91B360EBB002AB758 /* DE_Background.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DE_Background.h; sourceTree = "<group>"; };
+		24BF09AA1B360EBB002AB758 /* DE_Background.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DE_Background.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -64,6 +67,8 @@
 		246ECAFF1B325CEF00C2129D = {
 			isa = PBXGroup;
 			children = (
+				24BF09A91B360EBB002AB758 /* DE_Background.h */,
+				24BF09AA1B360EBB002AB758 /* DE_Background.m */,
 				2444438C1B35DDDC00E725A9 /* DE_Drawing.h */,
 				2444438D1B35DDDC00E725A9 /* DE_Drawing.m */,
 				246ECB311B32685400C2129D /* DE_Sidebar.h */,
@@ -223,6 +228,7 @@
 				246ECB331B32685400C2129D /* DE_Sidebar.m in Sources */,
 				246ECB111B325CEF00C2129D /* main.m in Sources */,
 				246ECB0F1B325CEF00C2129D /* AppDelegate.m in Sources */,
+				24BF09AB1B360EBB002AB758 /* DE_Background.m in Sources */,
 				2444438E1B35DDDC00E725A9 /* DE_Drawing.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

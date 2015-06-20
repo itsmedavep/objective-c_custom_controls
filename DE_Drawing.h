@@ -17,7 +17,8 @@
 // Colors
 + (NSColor*)sidePanelFillColor;
 + (NSColor*)sidePanelStrokeColor;
-
++ (NSColor*)backgroundPlugColor;
+// Corner Radius
 + (NSInteger*)cornerRadius;
 
 + (CGFloat*)sidePanelHeight;
@@ -26,7 +27,11 @@
 // Drawing Methods
 + (void)drawSidePanelWithSidePanelFrame: (NSRect)sidePanelFrame cornerRadius: (CGFloat)cornerRadius sidePanelWidth: (CGFloat)sidePanelWidth sidePanelHeight: (CGFloat)sidePanelHeight;
 
++ (void)drawBackgroundPlugWithBackgroundWidth: (CGFloat)backgroundWidth backgroundHeight: (CGFloat)backgroundHeight;
+
 // Generated Images
 + (NSImage*)imageOfSidePanelWithSidePanelFrame: (NSRect)sidePanelFrame cornerRadius: (CGFloat)cornerRadius sidePanelWidth: (CGFloat)sidePanelWidth sidePanelHeight: (CGFloat)sidePanelHeight;
+
++ (NSImage*)imageOfBackgroundPlugWithBackgroundWidth: (CGFloat)backgroundWidth backgroundHeight: (CGFloat)backgroundHeight;
 
 @end
