@@ -15,6 +15,7 @@
     
     [DE_Drawing drawSidePanelWithSidePanelFrame:frame cornerRadius:0 sidePanelWidth:frame.size.width+10 sidePanelHeight:frame.size.height];
     
+    
     // Drawing code here.
 }
 

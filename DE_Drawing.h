@@ -29,17 +29,15 @@
 
 // Drawing Methods
 + (void)drawSidePanelWithSidePanelFrame: (NSRect)sidePanelFrame cornerRadius: (CGFloat)cornerRadius sidePanelWidth: (CGFloat)sidePanelWidth sidePanelHeight: (CGFloat)sidePanelHeight;
-
 + (void)drawBackgroundPlugWithBackgroundWidth: (CGFloat)backgroundWidth backgroundHeight: (CGFloat)backgroundHeight;
-
 + (void)drawShadowTop;
++ (void)drawShadowBottom;
 
 // Generated Images
 + (NSImage*)imageOfSidePanelWithSidePanelFrame: (NSRect)sidePanelFrame cornerRadius: (CGFloat)cornerRadius sidePanelWidth: (CGFloat)sidePanelWidth sidePanelHeight: (CGFloat)sidePanelHeight;
-
 + (NSImage*)imageOfBackgroundPlugWithBackgroundWidth: (CGFloat)backgroundWidth backgroundHeight: (CGFloat)backgroundHeight;
-
 + (NSImage*)imageOfShadowTop;
++ (NSImage*)imageofShadowBottom;
 
 
 @end

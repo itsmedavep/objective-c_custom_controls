@@ -676,10 +676,7 @@
                 <rect key="frame" x="0.0" y="0.0" width="482" height="360"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <customView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Pb5-pA-7vF" customClass="DE_ShadowTop">
-                        <rect key="frame" x="43" y="120" width="405" height="10"/>
-                    </customView>
-                    <customView misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="l11-H4-B0B" customClass="DE_Background">
+                    <customView translatesAutoresizingMaskIntoConstraints="NO" id="l11-H4-B0B" customClass="DE_Background">
                         <rect key="frame" x="0.0" y="0.0" width="492" height="367"/>
                         <subviews>
                             <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="AhH-EL-KnS">
@@ -694,33 +691,50 @@
                                 <rect key="frame" x="227" y="240" width="19" height="27"/>
                                 <stepperCell key="cell" continuous="YES" alignment="left" maxValue="100" id="9fV-uf-0gA"/>
                             </stepper>
+                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="IUu-Dp-tqE">
+                                <rect key="frame" x="290" y="287" width="82" height="32"/>
+                                <buttonCell key="cell" type="push" title="Button" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="wi7-r5-7X6">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                            </button>
                         </subviews>
                     </customView>
-                    <customView misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="HdI-6f-lou" customClass="DE_Sidebar">
+                    <customView translatesAutoresizingMaskIntoConstraints="NO" id="HdI-6f-lou" customClass="DE_Sidebar">
                         <rect key="frame" x="1" y="0.0" width="34" height="370"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="34" id="IA1-th-8b0"/>
-                            <constraint firstAttribute="height" constant="400" id="XGI-En-bki"/>
+                            <constraint firstAttribute="height" constant="370" id="XGI-En-bki"/>
                         </constraints>
                     </customView>
-                    <customView misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="WPS-rG-5mJ" customClass="DE_Sidebar">
+                    <customView translatesAutoresizingMaskIntoConstraints="NO" id="WPS-rG-5mJ" customClass="DE_Sidebar">
                         <rect key="frame" x="448" y="0.0" width="34" height="369"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="34" id="8N9-HI-asr"/>
                         </constraints>
                     </customView>
+                    <customView translatesAutoresizingMaskIntoConstraints="NO" id="Pb5-pA-7vF" customClass="DE_ShadowTop">
+                        <rect key="frame" x="0.0" y="352" width="482" height="10"/>
+                    </customView>
+                    <customView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Yta-yC-7gb" customClass="DE_ShadowBottom">
+                        <rect key="frame" x="1" y="0.0" width="481" height="20"/>
+                    </customView>
                 </subviews>
                 <constraints>
                     <constraint firstItem="l11-H4-B0B" firstAttribute="leading" secondItem="EiT-Mj-1SZ" secondAttribute="leading" id="1He-Yc-xF7"/>
-                    <constraint firstItem="HdI-6f-lou" firstAttribute="top" secondItem="EiT-Mj-1SZ" secondAttribute="top" constant="-4" id="AAc-oB-dgQ"/>
+                    <constraint firstAttribute="trailing" secondItem="Pb5-pA-7vF" secondAttribute="trailing" id="1dJ-5v-xP8"/>
+                    <constraint firstItem="HdI-6f-lou" firstAttribute="top" secondItem="EiT-Mj-1SZ" secondAttribute="top" constant="-10" id="AAc-oB-dgQ"/>
+                    <constraint firstAttribute="bottom" secondItem="Pb5-pA-7vF" secondAttribute="bottom" constant="352" id="Bel-0Q-EaZ"/>
+                    <constraint firstItem="Pb5-pA-7vF" firstAttribute="top" secondItem="l11-H4-B0B" secondAttribute="top" constant="5" id="ENN-g4-YIZ"/>
                     <constraint firstItem="HdI-6f-lou" firstAttribute="leading" secondItem="EiT-Mj-1SZ" secondAttribute="leading" constant="1" id="FBW-sv-1Jl"/>
-                    <constraint firstAttribute="centerY" secondItem="l11-H4-B0B" secondAttribute="centerY" constant="58" id="Fmd-Zl-UNh"/>
-                    <constraint firstItem="WPS-rG-5mJ" firstAttribute="bottom" secondItem="HdI-6f-lou" secondAttribute="bottom" constant="-36" id="H2c-DZ-BU8"/>
-                    <constraint firstAttribute="centerX" secondItem="l11-H4-B0B" secondAttribute="centerX" id="Krk-ZS-cjU"/>
-                    <constraint firstAttribute="trailing" secondItem="WPS-rG-5mJ" secondAttribute="trailing" constant="10" id="Vhz-Jr-b5k"/>
-                    <constraint firstItem="WPS-rG-5mJ" firstAttribute="top" secondItem="HdI-6f-lou" secondAttribute="top" constant="-5" id="Ws9-Gj-BEa"/>
-                    <constraint firstAttribute="bottom" secondItem="HdI-6f-lou" secondAttribute="bottom" constant="73" id="fIk-yq-jnh"/>
-                    <constraint firstAttribute="bottom" secondItem="l11-H4-B0B" secondAttribute="bottom" constant="109" id="uMq-Tn-vSZ"/>
+                    <constraint firstAttribute="centerY" secondItem="l11-H4-B0B" secondAttribute="centerY" constant="3.5" id="Fmd-Zl-UNh"/>
+                    <constraint firstItem="WPS-rG-5mJ" firstAttribute="bottom" secondItem="HdI-6f-lou" secondAttribute="bottom" id="H2c-DZ-BU8"/>
+                    <constraint firstAttribute="centerX" secondItem="l11-H4-B0B" secondAttribute="centerX" constant="-5" id="Krk-ZS-cjU"/>
+                    <constraint firstItem="Pb5-pA-7vF" firstAttribute="leading" secondItem="EiT-Mj-1SZ" secondAttribute="leading" id="Vgh-kX-1a0"/>
+                    <constraint firstAttribute="trailing" secondItem="WPS-rG-5mJ" secondAttribute="trailing" id="Vhz-Jr-b5k"/>
+                    <constraint firstItem="WPS-rG-5mJ" firstAttribute="top" secondItem="HdI-6f-lou" secondAttribute="top" constant="1" id="Ws9-Gj-BEa"/>
+                    <constraint firstAttribute="bottom" secondItem="HdI-6f-lou" secondAttribute="bottom" id="fIk-yq-jnh"/>
+                    <constraint firstAttribute="bottom" secondItem="l11-H4-B0B" secondAttribute="bottom" id="uMq-Tn-vSZ"/>
                 </constraints>
             </view>
             <point key="canvasLocation" x="306" y="380"/>

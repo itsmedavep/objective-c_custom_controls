@@ -14,6 +14,7 @@
 - (void)drawRect:(NSRect)dirtyRect {
     
     [DE_Drawing drawBackgroundPlugWithBackgroundWidth:dirtyRect.size.width backgroundHeight:dirtyRect.size.height ];
+    [self setNeedsDisplay:YES];
     
     // Drawing code here.
 }
