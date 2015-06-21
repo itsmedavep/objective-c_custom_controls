@@ -18,6 +18,11 @@
 static NSColor* _sidePanelFillColor = nil;
 static NSColor* _sidePanelStrokeColor = nil;
 static NSColor* _backgroundPlugColor = nil;
+static NSColor* _gradientColor = nil;
+
+static NSGradient* _shadowGradient = nil;
+
+static NSImage* _imageOfShadowTop = nil;
 
 static NSInteger*_cornerRadius = nil;
 
@@ -33,6 +38,10 @@ static CGFloat*_sidePanelWidth = nil;
     _sidePanelStrokeColor = [NSColor colorWithCalibratedRed: 0.125 green: 0.125 blue: 0.125 alpha: 1];
     _backgroundPlugColor = [NSColor colorWithCalibratedRed: 0.24 green: 0.24 blue: 0.24 alpha: 1];
     
+    // Gradients Initialization
+    _gradientColor = [NSColor colorWithCalibratedRed: 0 green: 0 blue: 0 alpha: 0];
+    _shadowGradient = [NSGradient.alloc initWithStartingColor: NSColor.redColor endingColor: DE_Drawing.gradientColor];
+    
 
 }
 
@@ -41,6 +50,11 @@ static CGFloat*_sidePanelWidth = nil;
 + (NSColor*)sidePanelFillColor { return _sidePanelFillColor; }
 + (NSColor*)sidePanelStrokeColor { return _sidePanelStrokeColor; }
 + (NSColor*)backgroundPlugColor { return _backgroundPlugColor; }
++ (NSColor*)gradientColor { return _gradientColor; }
+
+#pragma mark Gradients
+
++ (NSGradient*)shadowGradient { return _shadowGradient; }
 
 #pragma mark Corner Radius
 + (NSInteger*)cornerRadius { return _cornerRadius; }
@@ -61,6 +75,7 @@ static CGFloat*_sidePanelWidth = nil;
     [DE_Drawing.sidePanelStrokeColor setStroke];
     [panelRectPath setLineWidth: 2];
     [panelRectPath stroke];
+    
 }
 
 + (void)drawBackgroundPlugWithBackgroundWidth: (CGFloat)backgroundWidth backgroundHeight: (CGFloat)backgroundHeight
@@ -70,6 +85,14 @@ static CGFloat*_sidePanelWidth = nil;
     NSBezierPath* rectanglePath = [NSBezierPath bezierPathWithRect: NSMakeRect(0, 0, backgroundWidth, backgroundHeight)];
     [DE_Drawing.backgroundPlugColor setFill];
     [rectanglePath fill];
+}
+
++ (void)drawShadowTop
+{
+    
+    //// topShadowRect Drawing
+    NSBezierPath* topShadowRectPath = [NSBezierPath bezierPathWithRect: NSMakeRect(0, 110, 360, 10)];
+    [DE_Drawing.shadowGradient drawInBezierPath: topShadowRectPath angle: -90];
 }
 
 #pragma mark Generated Images
@@ -94,6 +117,20 @@ static CGFloat*_sidePanelWidth = nil;
     [imageOfBackgroundPlug unlockFocus];
     
     return imageOfBackgroundPlug;
+}
+
++ (NSImage*)imageOfShadowTop
+{
+    if (_imageOfShadowTop)
+        return _imageOfShadowTop;
+    
+    _imageOfShadowTop = [NSImage.alloc initWithSize: NSMakeSize(360, 120)];
+    [_imageOfShadowTop lockFocus];
+    [DE_Drawing drawShadowTop];
+    
+    [_imageOfShadowTop unlockFocus];
+    
+    return _imageOfShadowTop;
 }
 
 

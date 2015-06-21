@@ -5,8 +5,6 @@
 //  Created by David Palmer on 6/20/15.
 //  Copyright (c) 2015 itsmedavep.com. All rights reserved.
 //
-//
-//
 
 #import <Foundation/Foundation.h>
 #import <Cocoa/Cocoa.h>
@@ -18,6 +16,11 @@
 + (NSColor*)sidePanelFillColor;
 + (NSColor*)sidePanelStrokeColor;
 + (NSColor*)backgroundPlugColor;
++ (NSColor*)gradientColor;
+
+// Gradients
++ (NSGradient*)shadowGradient;
+
 // Corner Radius
 + (NSInteger*)cornerRadius;
 
@@ -29,9 +32,14 @@
 
 + (void)drawBackgroundPlugWithBackgroundWidth: (CGFloat)backgroundWidth backgroundHeight: (CGFloat)backgroundHeight;
 
++ (void)drawShadowTop;
+
 // Generated Images
 + (NSImage*)imageOfSidePanelWithSidePanelFrame: (NSRect)sidePanelFrame cornerRadius: (CGFloat)cornerRadius sidePanelWidth: (CGFloat)sidePanelWidth sidePanelHeight: (CGFloat)sidePanelHeight;
 
 + (NSImage*)imageOfBackgroundPlugWithBackgroundWidth: (CGFloat)backgroundWidth backgroundHeight: (CGFloat)backgroundHeight;
+
++ (NSImage*)imageOfShadowTop;
+
 
 @end
