@@ -17,143 +17,176 @@
 
 static NSColor* _sidePanelFillColor = nil;
 static NSColor* _sidePanelStrokeColor = nil;
-static NSColor* _backgroundPlugColor = nil;
-static NSColor* _gradientColor = nil;
+static NSColor* _upperShadowUpperStop = nil;
+static NSColor* _upperShadowBottomStop = nil;
+static NSColor* _upperShadowEdgeColor = nil;
+static NSColor* _lowerShadowUpperStop = nil;
+static NSColor* _lowerShadowLowerStop = nil;
+static NSColor* _sidePanelLeftHighlightColor = nil;
+static NSColor* _sidePanelRightHighlightColor = nil;
+static NSColor* _backgroundRectColor = nil;
 
-static NSGradient* _shadowGradient = nil;
+static NSGradient* _upperShadow = nil;
+static NSGradient* _lowerShadow = nil;
 
-static NSImage* _imageOfShadowTop = nil;
-static NSImage* _imageOfShadowBottom = nil;
+static NSShadow* _sidePanelLeftHighlight = nil;
+static NSShadow* _sidePanelRightHighlight = nil;
+static NSShadow* _upperShadowEdge = nil;
 
-static NSInteger*_cornerRadius = nil;
-
-static CGFloat*_sidePanelHeight = nil;
-static CGFloat*_sidePanelWidth = nil;
+static NSImage* _imageOfStylingCanvas = nil;
 
 #pragma mark Initialization
 
 + (void)initialize
 {
     // Colors Initialization
-    _sidePanelFillColor = [NSColor colorWithCalibratedRed: 0.332 green: 0.332 blue: 0.332 alpha: 1];
-    _sidePanelStrokeColor = [NSColor colorWithCalibratedRed: 0.125 green: 0.125 blue: 0.125 alpha: 1];
-    _backgroundPlugColor = [NSColor colorWithCalibratedRed: 0.24 green: 0.24 blue: 0.24 alpha: 1];
-    _gradientColor = [NSColor colorWithCalibratedRed: 0 green: 0 blue: 0 alpha: 0];
+    _sidePanelFillColor = [NSColor colorWithCalibratedRed: 0.173 green: 0.173 blue: 0.173 alpha: 1];
+    _sidePanelStrokeColor = [NSColor colorWithCalibratedRed: 0 green: 0 blue: 0 alpha: 1];
+    _upperShadowUpperStop = [NSColor colorWithCalibratedRed: 0 green: 0 blue: 0 alpha: 1];
+    _upperShadowBottomStop = [NSColor colorWithCalibratedRed: 0 green: 0 blue: 0 alpha: 0];
+    _upperShadowEdgeColor = [NSColor colorWithCalibratedRed: 1 green: 1 blue: 1 alpha: 1];
+    _lowerShadowUpperStop = [NSColor colorWithCalibratedRed: 0 green: 0 blue: 0 alpha: 0];
+    _lowerShadowLowerStop = [NSColor colorWithCalibratedRed: 0 green: 0 blue: 0 alpha: 1];
+    _sidePanelLeftHighlightColor = [NSColor colorWithCalibratedRed: 1 green: 1 blue: 1 alpha: 0.25];
+    _sidePanelRightHighlightColor = [NSColor colorWithCalibratedRed: 1 green: 1 blue: 1 alpha: 0.25];
+    _backgroundRectColor = [NSColor colorWithCalibratedRed: 0.293 green: 0.293 blue: 0.293 alpha: 1];
     
     // Gradients Initialization
-     _shadowGradient = [NSGradient.alloc initWithStartingColor: NSColor.blackColor endingColor: DE_Drawing.gradientColor];
+    _upperShadow = [NSGradient.alloc initWithStartingColor: DE_Drawing.upperShadowUpperStop endingColor: DE_Drawing.upperShadowBottomStop];
+    _lowerShadow = [NSGradient.alloc initWithStartingColor: DE_Drawing.lowerShadowUpperStop endingColor: DE_Drawing.lowerShadowLowerStop];
     
-
+    // Shadows Initialization
+    _sidePanelLeftHighlight = NSShadow.alloc.init;
+    [_sidePanelLeftHighlight setShadowColor: DE_Drawing.sidePanelLeftHighlightColor];
+    [_sidePanelLeftHighlight setShadowOffset: NSMakeSize(2.1, 0.1)];
+    [_sidePanelLeftHighlight setShadowBlurRadius: 0];
+    _sidePanelRightHighlight = NSShadow.alloc.init;
+    [_sidePanelRightHighlight setShadowColor: DE_Drawing.sidePanelRightHighlightColor];
+    [_sidePanelRightHighlight setShadowOffset: NSMakeSize(-2.1, 0.1)];
+    [_sidePanelRightHighlight setShadowBlurRadius: 0];
+    _upperShadowEdge = NSShadow.alloc.init;
+    [_upperShadowEdge setShadowColor: [DE_Drawing.upperShadowEdgeColor colorWithAlphaComponent: 0.25]];
+    [_upperShadowEdge setShadowOffset: NSMakeSize(0.1, -3.1)];
+    [_upperShadowEdge setShadowBlurRadius: 0];
+    
 }
 
 #pragma mark Colors
 
 + (NSColor*)sidePanelFillColor { return _sidePanelFillColor; }
 + (NSColor*)sidePanelStrokeColor { return _sidePanelStrokeColor; }
-+ (NSColor*)backgroundPlugColor { return _backgroundPlugColor; }
-+ (NSColor*)gradientColor { return _gradientColor; }
++ (NSColor*)upperShadowUpperStop { return _upperShadowUpperStop; }
++ (NSColor*)upperShadowBottomStop { return _upperShadowBottomStop; }
++ (NSColor*)upperShadowEdgeColor { return _upperShadowEdgeColor; }
++ (NSColor*)lowerShadowUpperStop { return _lowerShadowUpperStop; }
++ (NSColor*)lowerShadowLowerStop { return _lowerShadowLowerStop; }
++ (NSColor*)sidePanelLeftHighlightColor { return _sidePanelLeftHighlightColor; }
++ (NSColor*)sidePanelRightHighlightColor { return _sidePanelRightHighlightColor; }
++ (NSColor*)backgroundRectColor { return _backgroundRectColor; }
 
 #pragma mark Gradients
 
-+ (NSGradient*)shadowGradient { return _shadowGradient; }
++ (NSGradient*)upperShadow { return _upperShadow; }
++ (NSGradient*)lowerShadow { return _lowerShadow; }
 
-#pragma mark Corner Radius
-+ (NSInteger*)cornerRadius { return _cornerRadius; }
+#pragma mark Shadows
 
-#pragma mark Side Panel Dims
-+ (CGFloat*)sidePanelHeight { return _sidePanelHeight; }
-+ (CGFloat*)sidePanelWidth { return _sidePanelWidth; }
++ (NSShadow*)sidePanelLeftHighlight { return _sidePanelLeftHighlight; }
++ (NSShadow*)sidePanelRightHighlight { return _sidePanelRightHighlight; }
++ (NSShadow*)upperShadowEdge { return _upperShadowEdge; }
 
 #pragma mark Drawing Methods
 
-+ (void)drawSidePanelWithSidePanelFrame: (NSRect)frame cornerRadius: (CGFloat)cornerRadius sidePanelWidth: (CGFloat)sidePanelWidth sidePanelHeight: (CGFloat)sidePanelHeight
++ (void)drawStylingCanvas
 {
-
-    //// panelRect Drawing
-    NSBezierPath* panelRectPath = [NSBezierPath bezierPathWithRoundedRect: NSMakeRect(1, 1, sidePanelWidth, sidePanelHeight) xRadius: cornerRadius yRadius: cornerRadius];
+    //// General Declarations
+    CGContextRef context = (CGContextRef)NSGraphicsContext.currentContext.graphicsPort;
+    
+    //// backgroundRect Drawing
+    NSBezierPath* backgroundRectPath = [NSBezierPath bezierPathWithRect: NSMakeRect(0, 1, 640, 480)];
+    [DE_Drawing.backgroundRectColor setFill];
+    [backgroundRectPath fill];
+    
+    
+    //// sidePanelLeft Drawing
+    NSBezierPath* sidePanelLeftPath = [NSBezierPath bezierPathWithRect: NSMakeRect(-0.5, -0.5, 14, 480)];
+    [NSGraphicsContext saveGraphicsState];
+    [DE_Drawing.sidePanelLeftHighlight set];
     [DE_Drawing.sidePanelFillColor setFill];
-    [panelRectPath fill];
+    [sidePanelLeftPath fill];
+    [NSGraphicsContext restoreGraphicsState];
+    
     [DE_Drawing.sidePanelStrokeColor setStroke];
-    [panelRectPath setLineWidth: 2];
-    [panelRectPath stroke];
+    [sidePanelLeftPath setLineWidth: 2];
+    [sidePanelLeftPath stroke];
     
-}
-
-+ (void)drawBackgroundPlugWithBackgroundWidth: (CGFloat)backgroundWidth backgroundHeight: (CGFloat)backgroundHeight
-{
     
-    //// Rectangle Drawing
-    NSBezierPath* rectanglePath = [NSBezierPath bezierPathWithRect: NSMakeRect(0, 0, backgroundWidth, backgroundHeight)];
-    [DE_Drawing.backgroundPlugColor setFill];
-    [rectanglePath fill];
-}
-
-+ (void)drawShadowTop
-{
+    //// sidePanelRight Drawing
+    NSBezierPath* sidePanelRightPath = [NSBezierPath bezierPathWithRect: NSMakeRect(626.5, -0.5, 14, 480)];
+    [NSGraphicsContext saveGraphicsState];
+    [DE_Drawing.sidePanelRightHighlight set];
+    [DE_Drawing.sidePanelFillColor setFill];
+    [sidePanelRightPath fill];
+    [NSGraphicsContext restoreGraphicsState];
     
-    //// topShadowRect Drawing
-    NSBezierPath* topShadowRectPath = [NSBezierPath bezierPathWithRect: NSMakeRect(0, 0, 360, 10)];
-    [DE_Drawing.shadowGradient drawInBezierPath: topShadowRectPath angle: -90];
-}
-
-+ (void)drawShadowBottom
-{
+    [DE_Drawing.sidePanelStrokeColor setStroke];
+    [sidePanelRightPath setLineWidth: 2];
+    [sidePanelRightPath stroke];
     
-    //// topShadowRect Drawing
-    NSBezierPath* bottomShadowRectPath = [NSBezierPath bezierPathWithRect: NSMakeRect(0, 0, 360, 10)];
-    [DE_Drawing.shadowGradient drawInBezierPath: bottomShadowRectPath angle: 90];
+    
+    //// upperShadowAreaRect Drawing
+    NSBezierPath* upperShadowAreaRectPath = [NSBezierPath bezierPathWithRect: NSMakeRect(0, 469, 640, 10)];
+    [NSGraphicsContext saveGraphicsState];
+    [DE_Drawing.upperShadowEdge set];
+    CGContextBeginTransparencyLayer(context, NULL);
+    [DE_Drawing.upperShadow drawInBezierPath: upperShadowAreaRectPath angle: -90];
+    CGContextEndTransparencyLayer(context);
+    [NSGraphicsContext restoreGraphicsState];
+    
+    
+    
+    //// lowerShadowAreaRect Drawing
+    NSBezierPath* lowerShadowAreaRectPath = [NSBezierPath bezierPathWithRect: NSMakeRect(0, -1, 640, 10)];
+    [DE_Drawing.lowerShadow drawInBezierPath: lowerShadowAreaRectPath angle: -90];
 }
 
 #pragma mark Generated Images
 
-+ (NSImage*)imageOfSidePanelWithSidePanelFrame: (NSRect)frame cornerRadius: (CGFloat)cornerRadius sidePanelWidth: (CGFloat)sidePanelWidth sidePanelHeight: (CGFloat)sidePanelHeight
++ (NSImage*)imageOfStylingCanvas
 {
-    NSImage* imageOfSidePanel = [NSImage.alloc initWithSize: frame.size];
-    [imageOfSidePanel lockFocus];
-    [DE_Drawing drawSidePanelWithSidePanelFrame: frame cornerRadius: cornerRadius sidePanelWidth: sidePanelWidth sidePanelHeight: sidePanelHeight];
-
-    [imageOfSidePanel unlockFocus];
-
-    return imageOfSidePanel;
+    if (_imageOfStylingCanvas)
+        return _imageOfStylingCanvas;
+    
+    _imageOfStylingCanvas = [NSImage.alloc initWithSize: NSMakeSize(640, 380)];
+    [_imageOfStylingCanvas lockFocus];
+    [DE_Drawing drawStylingCanvas];
+    
+    [_imageOfStylingCanvas unlockFocus];
+    
+    return _imageOfStylingCanvas;
 }
 
-+ (NSImage*)imageOfBackgroundPlugWithBackgroundWidth: (CGFloat)backgroundWidth backgroundHeight: (CGFloat)backgroundHeight
+@end
+
+
+
+@implementation NSShadow (MyShadow)
+
+- (instancetype)initWithColor: (NSColor*)color offset: (CGSize)offset blurRadius: (CGFloat)blurRadius
 {
-    NSImage* imageOfBackgroundPlug = [NSImage.alloc initWithSize: NSMakeSize(410, 360)];
-    [imageOfBackgroundPlug lockFocus];
-    [DE_Drawing drawBackgroundPlugWithBackgroundWidth: backgroundWidth backgroundHeight: backgroundHeight];
-    
-    [imageOfBackgroundPlug unlockFocus];
-    
-    return imageOfBackgroundPlug;
+    self = super.init;
+    if (self)
+    {
+        self.shadowColor = color;
+        self.shadowOffset = offset;
+        self.shadowBlurRadius = blurRadius;
+    }
+    return self;
 }
 
-+ (NSImage*)imageOfShadowTop
++ (instancetype)shadowWithColor: (NSColor*)color offset: (CGSize)offset blurRadius: (CGFloat)blurRadius
 {
-    if (_imageOfShadowTop)
-        return _imageOfShadowTop;
-    
-    _imageOfShadowTop = [NSImage.alloc initWithSize: NSMakeSize(360, 120)];
-    [_imageOfShadowTop lockFocus];
-    [DE_Drawing drawShadowTop];
-    
-    [_imageOfShadowTop unlockFocus];
-    
-    return _imageOfShadowTop;
-}
-
-+ (NSImage*)imageofShadowBottom
-{
-    if (_imageOfShadowBottom)
-        return _imageOfShadowBottom;
-    
-    _imageOfShadowBottom = [NSImage.alloc initWithSize: NSMakeSize(360, 120)];
-    [_imageOfShadowBottom lockFocus];
-    [DE_Drawing drawShadowBottom];
-    
-    [_imageOfShadowBottom unlockFocus];
-    
-    return _imageOfShadowBottom;
+    return [self.alloc initWithColor: color offset: offset blurRadius: blurRadius];
 }
 
 

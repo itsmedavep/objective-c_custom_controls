@@ -13,8 +13,7 @@
 
 - (void)drawRect:(NSRect)dirtyRect {
     
-    [DE_Drawing drawBackgroundPlugWithBackgroundWidth:dirtyRect.size.width backgroundHeight:dirtyRect.size.height ];
-    [self setNeedsDisplay:YES];
+    [DE_Drawing drawStylingCanvas];
     
     // Drawing code here.
 }

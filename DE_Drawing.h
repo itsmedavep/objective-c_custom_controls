@@ -15,29 +15,37 @@
 // Colors
 + (NSColor*)sidePanelFillColor;
 + (NSColor*)sidePanelStrokeColor;
-+ (NSColor*)backgroundPlugColor;
-+ (NSColor*)gradientColor;
++ (NSColor*)upperShadowUpperStop;
++ (NSColor*)upperShadowBottomStop;
++ (NSColor*)upperShadowEdgeColor;
++ (NSColor*)lowerShadowUpperStop;
++ (NSColor*)lowerShadowLowerStop;
++ (NSColor*)sidePanelLeftHighlightColor;
++ (NSColor*)sidePanelRightHighlightColor;
++ (NSColor*)backgroundRectColor;
 
 // Gradients
-+ (NSGradient*)shadowGradient;
++ (NSGradient*)upperShadow;
++ (NSGradient*)lowerShadow;
 
-// Corner Radius
-+ (NSInteger*)cornerRadius;
-
-+ (CGFloat*)sidePanelHeight;
-+ (CGFloat*)sidePanelWidth;
+// Shadows
++ (NSShadow*)sidePanelLeftHighlight;
++ (NSShadow*)sidePanelRightHighlight;
++ (NSShadow*)upperShadowEdge;
 
 // Drawing Methods
-+ (void)drawSidePanelWithSidePanelFrame: (NSRect)sidePanelFrame cornerRadius: (CGFloat)cornerRadius sidePanelWidth: (CGFloat)sidePanelWidth sidePanelHeight: (CGFloat)sidePanelHeight;
-+ (void)drawBackgroundPlugWithBackgroundWidth: (CGFloat)backgroundWidth backgroundHeight: (CGFloat)backgroundHeight;
-+ (void)drawShadowTop;
-+ (void)drawShadowBottom;
++ (void)drawStylingCanvas;
 
 // Generated Images
-+ (NSImage*)imageOfSidePanelWithSidePanelFrame: (NSRect)sidePanelFrame cornerRadius: (CGFloat)cornerRadius sidePanelWidth: (CGFloat)sidePanelWidth sidePanelHeight: (CGFloat)sidePanelHeight;
-+ (NSImage*)imageOfBackgroundPlugWithBackgroundWidth: (CGFloat)backgroundWidth backgroundHeight: (CGFloat)backgroundHeight;
-+ (NSImage*)imageOfShadowTop;
-+ (NSImage*)imageofShadowBottom;
++ (NSImage*)imageOfStylingCanvas;
+
+@end
+
+
+
+@interface NSShadow (MyShadow)
+
++ (instancetype)shadowWithColor: (NSColor*)color offset: (CGSize)offset blurRadius: (CGFloat)blurRadius;
 
 
 @end

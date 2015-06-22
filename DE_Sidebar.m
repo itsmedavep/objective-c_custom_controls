@@ -13,7 +13,7 @@
 
 - (void)drawRect:(NSRect)frame {
     
-    [DE_Drawing drawSidePanelWithSidePanelFrame:frame cornerRadius:0 sidePanelWidth:frame.size.width+10 sidePanelHeight:frame.size.height];
+    [DE_Drawing drawSidePanelWithSidePanelFrame:frame cornerRadius:0 sidePanelWidth:frame.size.width sidePanelHeight:frame.size.height];
     
     
     // Drawing code here.
