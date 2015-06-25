@@ -17,13 +17,16 @@
 
 static NSColor* _sidePanelFillColor = nil;
 static NSColor* _sidePanelStrokeColor = nil;
+
 static NSColor* _upperShadowUpperStop = nil;
 static NSColor* _upperShadowBottomStop = nil;
 static NSColor* _upperShadowEdgeColor = nil;
 static NSColor* _lowerShadowUpperStop = nil;
 static NSColor* _lowerShadowLowerStop = nil;
+
 static NSColor* _sidePanelLeftHighlightColor = nil;
 static NSColor* _sidePanelRightHighlightColor = nil;
+
 static NSColor* _backgroundRectColor = nil;
 
 static NSGradient* _upperShadow = nil;
@@ -31,6 +34,7 @@ static NSGradient* _lowerShadow = nil;
 
 static NSShadow* _sidePanelLeftHighlight = nil;
 static NSShadow* _sidePanelRightHighlight = nil;
+
 static NSShadow* _upperShadowEdge = nil;
 
 static NSImage* _imageOfStylingCanvas = nil;
@@ -42,13 +46,16 @@ static NSImage* _imageOfStylingCanvas = nil;
     // Colors Initialization
     _sidePanelFillColor = [NSColor colorWithCalibratedRed: 0.173 green: 0.173 blue: 0.173 alpha: 1];
     _sidePanelStrokeColor = [NSColor colorWithCalibratedRed: 0 green: 0 blue: 0 alpha: 1];
+    
     _upperShadowUpperStop = [NSColor colorWithCalibratedRed: 0 green: 0 blue: 0 alpha: 1];
     _upperShadowBottomStop = [NSColor colorWithCalibratedRed: 0 green: 0 blue: 0 alpha: 0];
     _upperShadowEdgeColor = [NSColor colorWithCalibratedRed: 1 green: 1 blue: 1 alpha: 1];
     _lowerShadowUpperStop = [NSColor colorWithCalibratedRed: 0 green: 0 blue: 0 alpha: 0];
     _lowerShadowLowerStop = [NSColor colorWithCalibratedRed: 0 green: 0 blue: 0 alpha: 1];
+    
     _sidePanelLeftHighlightColor = [NSColor colorWithCalibratedRed: 1 green: 1 blue: 1 alpha: 0.25];
     _sidePanelRightHighlightColor = [NSColor colorWithCalibratedRed: 1 green: 1 blue: 1 alpha: 0.25];
+    
     _backgroundRectColor = [NSColor colorWithCalibratedRed: 0.293 green: 0.293 blue: 0.293 alpha: 1];
     
     // Gradients Initialization
@@ -60,10 +67,12 @@ static NSImage* _imageOfStylingCanvas = nil;
     [_sidePanelLeftHighlight setShadowColor: DE_Drawing.sidePanelLeftHighlightColor];
     [_sidePanelLeftHighlight setShadowOffset: NSMakeSize(2.1, 0.1)];
     [_sidePanelLeftHighlight setShadowBlurRadius: 0];
+    
     _sidePanelRightHighlight = NSShadow.alloc.init;
     [_sidePanelRightHighlight setShadowColor: DE_Drawing.sidePanelRightHighlightColor];
     [_sidePanelRightHighlight setShadowOffset: NSMakeSize(-2.1, 0.1)];
     [_sidePanelRightHighlight setShadowBlurRadius: 0];
+    
     _upperShadowEdge = NSShadow.alloc.init;
     [_upperShadowEdge setShadowColor: [DE_Drawing.upperShadowEdgeColor colorWithAlphaComponent: 0.25]];
     [_upperShadowEdge setShadowOffset: NSMakeSize(0.1, -3.1)];
@@ -75,13 +84,16 @@ static NSImage* _imageOfStylingCanvas = nil;
 
 + (NSColor*)sidePanelFillColor { return _sidePanelFillColor; }
 + (NSColor*)sidePanelStrokeColor { return _sidePanelStrokeColor; }
+
 + (NSColor*)upperShadowUpperStop { return _upperShadowUpperStop; }
 + (NSColor*)upperShadowBottomStop { return _upperShadowBottomStop; }
 + (NSColor*)upperShadowEdgeColor { return _upperShadowEdgeColor; }
 + (NSColor*)lowerShadowUpperStop { return _lowerShadowUpperStop; }
 + (NSColor*)lowerShadowLowerStop { return _lowerShadowLowerStop; }
+
 + (NSColor*)sidePanelLeftHighlightColor { return _sidePanelLeftHighlightColor; }
 + (NSColor*)sidePanelRightHighlightColor { return _sidePanelRightHighlightColor; }
+
 + (NSColor*)backgroundRectColor { return _backgroundRectColor; }
 
 #pragma mark Gradients
@@ -93,6 +105,7 @@ static NSImage* _imageOfStylingCanvas = nil;
 
 + (NSShadow*)sidePanelLeftHighlight { return _sidePanelLeftHighlight; }
 + (NSShadow*)sidePanelRightHighlight { return _sidePanelRightHighlight; }
+
 + (NSShadow*)upperShadowEdge { return _upperShadowEdge; }
 
 #pragma mark Drawing Methods
