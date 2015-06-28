@@ -29,6 +29,10 @@ static NSColor* _sidePanelRightHighlightColor = nil;
 
 static NSColor* _backgroundRectColor = nil;
 
+static NSColor* _textBoxOuterShadowColor = nil;
+static NSColor* _textBoxFillColor = nil;
+static NSColor* _textBoxStrokeColor = nil;
+
 static NSGradient* _upperShadow = nil;
 static NSGradient* _lowerShadow = nil;
 
@@ -37,7 +41,10 @@ static NSShadow* _sidePanelRightHighlight = nil;
 
 static NSShadow* _upperShadowEdge = nil;
 
+static NSShadow* _textBoxEdgeHighligh = nil;
+
 static NSImage* _imageOfStylingCanvas = nil;
+static NSImage* _imageOfTextBoxBackgroundCanvasWithTextBoxCornerRadius = nil;
 
 #pragma mark Initialization
 
@@ -57,6 +64,10 @@ static NSImage* _imageOfStylingCanvas = nil;
     _sidePanelRightHighlightColor = [NSColor colorWithCalibratedRed: 1 green: 1 blue: 1 alpha: 0.25];
     
     _backgroundRectColor = [NSColor colorWithCalibratedRed: 0.293 green: 0.293 blue: 0.293 alpha: 1];
+    
+    _textBoxOuterShadowColor = [NSColor colorWithCalibratedRed: 1 green: 1 blue: 1 alpha: 1];
+    _textBoxFillColor = [NSColor colorWithCalibratedRed: 0.29 green: 0.29 blue: 0.29 alpha: 1];
+    _textBoxStrokeColor = [NSColor colorWithCalibratedRed: 0 green: 0 blue: 0 alpha: 1];
     
     // Gradients Initialization
     _upperShadow = [NSGradient.alloc initWithStartingColor: DE_Drawing.upperShadowUpperStop endingColor: DE_Drawing.upperShadowBottomStop];
@@ -78,6 +89,11 @@ static NSImage* _imageOfStylingCanvas = nil;
     [_upperShadowEdge setShadowOffset: NSMakeSize(0.1, -3.1)];
     [_upperShadowEdge setShadowBlurRadius: 0];
     
+    _textBoxEdgeHighligh = NSShadow.alloc.init;
+    [_textBoxEdgeHighligh setShadowColor: [DE_Drawing.textBoxOuterShadowColor colorWithAlphaComponent: 0.75]];
+    [_textBoxEdgeHighligh setShadowOffset: NSMakeSize(0.1, -1.1)];
+    [_textBoxEdgeHighligh setShadowBlurRadius: 2];
+    
 }
 
 #pragma mark Colors
@@ -96,6 +112,10 @@ static NSImage* _imageOfStylingCanvas = nil;
 
 + (NSColor*)backgroundRectColor { return _backgroundRectColor; }
 
++ (NSColor*)textBoxOuterShadowColor { return _textBoxOuterShadowColor; }
++ (NSColor*)textBoxFillColor { return _textBoxFillColor; }
++ (NSColor*)textBoxStrokeColor { return _textBoxStrokeColor; }
+
 #pragma mark Gradients
 
 + (NSGradient*)upperShadow { return _upperShadow; }
@@ -107,6 +127,7 @@ static NSImage* _imageOfStylingCanvas = nil;
 + (NSShadow*)sidePanelRightHighlight { return _sidePanelRightHighlight; }
 
 + (NSShadow*)upperShadowEdge { return _upperShadowEdge; }
++ (NSShadow*)textBoxEdgeHighligh { return _textBoxEdgeHighligh; }
 
 #pragma mark Drawing Methods
 
@@ -161,6 +182,23 @@ static NSImage* _imageOfStylingCanvas = nil;
     //// lowerShadowAreaRect Drawing
     NSBezierPath* lowerShadowAreaRectPath = [NSBezierPath bezierPathWithRect: NSMakeRect(0, -1, 640, 10)];
     [DE_Drawing.lowerShadow drawInBezierPath: lowerShadowAreaRectPath angle: -90];
+    
+}
+
++ (void)drawTextBoxBackgroundCanvasWithTextBoxCornerRadius: (CGFloat)textBoxCornerRadius textBoxRectangleX: (CGFloat)textBoxRectangleX textBoxRectangleY: (CGFloat)textBoxRectangleY textBoxWidth: (CGFloat)textBoxWidth textboxHeight: (CGFloat)textboxHeight textBoxStrokeWidth: (CGFloat)textBoxStrokeWidth
+{
+    
+    //// textBoxRectangle Drawing
+    NSBezierPath* textBoxRectanglePath = [NSBezierPath bezierPathWithRoundedRect: NSMakeRect(textBoxRectangleX, textBoxRectangleY, textBoxWidth, textboxHeight) xRadius: textBoxCornerRadius yRadius: textBoxCornerRadius];
+    [NSGraphicsContext saveGraphicsState];
+    [DE_Drawing.textBoxEdgeHighligh set];
+    [DE_Drawing.textBoxFillColor setFill];
+    [textBoxRectanglePath fill];
+    [NSGraphicsContext restoreGraphicsState];
+    
+    [DE_Drawing.textBoxStrokeColor setStroke];
+    [textBoxRectanglePath setLineWidth: textBoxStrokeWidth];
+    [textBoxRectanglePath stroke];
 }
 
 #pragma mark Generated Images
@@ -177,6 +215,17 @@ static NSImage* _imageOfStylingCanvas = nil;
     [_imageOfStylingCanvas unlockFocus];
     
     return _imageOfStylingCanvas;
+}
+
++ (NSImage*)imageOfTextBoxBackgroundCanvasWithTextBoxCornerRadius: (CGFloat)textBoxCornerRadius textBoxRectangleX: (CGFloat)textBoxRectangleX textBoxRectangleY: (CGFloat)textBoxRectangleY textBoxWidth: (CGFloat)textBoxWidth textboxHeight: (CGFloat)textboxHeight textBoxStrokeWidth: (CGFloat)textBoxStrokeWidth
+{
+    NSImage* imageOfTextBoxBackgroundCanvas = [NSImage.alloc initWithSize: NSMakeSize(219, 72)];
+    [imageOfTextBoxBackgroundCanvas lockFocus];
+    [DE_Drawing drawTextBoxBackgroundCanvasWithTextBoxCornerRadius: textBoxCornerRadius textBoxRectangleX: textBoxRectangleX textBoxRectangleY: textBoxRectangleY textBoxWidth: textBoxWidth textboxHeight: textboxHeight textBoxStrokeWidth: textBoxStrokeWidth];
+    
+    [imageOfTextBoxBackgroundCanvas unlockFocus];
+    
+    return imageOfTextBoxBackgroundCanvas;
 }
 
 @end

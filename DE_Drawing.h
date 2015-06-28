@@ -23,6 +23,9 @@
 + (NSColor*)sidePanelLeftHighlightColor;
 + (NSColor*)sidePanelRightHighlightColor;
 + (NSColor*)backgroundRectColor;
++ (NSColor*)textBoxOuterShadowColor;
++ (NSColor*)textBoxFillColor;
++ (NSColor*)textBoxStrokeColor;
 
 // Gradients
 + (NSGradient*)upperShadow;
@@ -32,12 +35,15 @@
 + (NSShadow*)sidePanelLeftHighlight;
 + (NSShadow*)sidePanelRightHighlight;
 + (NSShadow*)upperShadowEdge;
++ (NSShadow*)textBoxEdgeHighligh;
 
 // Drawing Methods
 + (void)drawStylingCanvas;
++ (void)drawTextBoxBackgroundCanvasWithTextBoxCornerRadius: (CGFloat)textBoxCornerRadius textBoxRectangleX: (CGFloat)textBoxRectangleX textBoxRectangleY: (CGFloat)textBoxRectangleY textBoxWidth: (CGFloat)textBoxWidth textboxHeight: (CGFloat)textboxHeight textBoxStrokeWidth: (CGFloat)textBoxStrokeWidth;
 
 // Generated Images
 + (NSImage*)imageOfStylingCanvas;
++ (NSImage*)imageOfTextBoxBackgroundCanvasWithTextBoxCornerRadius: (CGFloat)textBoxCornerRadius textBoxRectangleX: (CGFloat)textBoxRectangleX textBoxRectangleY: (CGFloat)textBoxRectangleY textBoxWidth: (CGFloat)textBoxWidth textboxHeight: (CGFloat)textboxHeight textBoxStrokeWidth: (CGFloat)textBoxStrokeWidth;
 
 @end
 

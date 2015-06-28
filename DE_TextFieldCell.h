@@ -8,9 +8,6 @@
 
 #import <Cocoa/Cocoa.h>
 
-
-
-
 @interface DE_TextFieldCell : NSTextFieldCell
 
 @end
