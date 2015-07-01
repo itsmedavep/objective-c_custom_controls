@@ -15,6 +15,8 @@
     
     [DE_Drawing drawStylingCanvas];
     
+    [self setNeedsDisplayInRect:dirtyRect];
+    
     // Drawing code here.
 }
 

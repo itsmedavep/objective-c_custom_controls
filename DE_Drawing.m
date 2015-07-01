@@ -42,6 +42,7 @@ static NSShadow* _sidePanelRightHighlight = nil;
 static NSShadow* _upperShadowEdge = nil;
 
 static NSShadow* _textBoxEdgeHighligh = nil;
+static NSShadow* _textBoxInnerShadow = nil;
 
 static NSImage* _imageOfStylingCanvas = nil;
 static NSImage* _imageOfTextBoxBackgroundCanvasWithTextBoxCornerRadius = nil;
@@ -66,7 +67,7 @@ static NSImage* _imageOfTextBoxBackgroundCanvasWithTextBoxCornerRadius = nil;
     _backgroundRectColor = [NSColor colorWithCalibratedRed: 0.293 green: 0.293 blue: 0.293 alpha: 1];
     
     _textBoxOuterShadowColor = [NSColor colorWithCalibratedRed: 1 green: 1 blue: 1 alpha: 1];
-    _textBoxFillColor = [NSColor colorWithCalibratedRed: 0.29 green: 0.29 blue: 0.29 alpha: 1];
+    _textBoxFillColor = [NSColor colorWithCalibratedRed: 0.117 green: 0.117 blue: 0.117 alpha: 1];
     _textBoxStrokeColor = [NSColor colorWithCalibratedRed: 0 green: 0 blue: 0 alpha: 1];
     
     // Gradients Initialization
@@ -93,6 +94,11 @@ static NSImage* _imageOfTextBoxBackgroundCanvasWithTextBoxCornerRadius = nil;
     [_textBoxEdgeHighligh setShadowColor: [DE_Drawing.textBoxOuterShadowColor colorWithAlphaComponent: 0.75]];
     [_textBoxEdgeHighligh setShadowOffset: NSMakeSize(0.1, -1.1)];
     [_textBoxEdgeHighligh setShadowBlurRadius: 2];
+    
+    _textBoxInnerShadow = NSShadow.alloc.init;
+    [_textBoxInnerShadow setShadowColor: NSColor.blackColor];
+    [_textBoxInnerShadow setShadowOffset: NSMakeSize(0.1, -1.1)];
+    [_textBoxInnerShadow setShadowBlurRadius: 5];
     
 }
 
@@ -128,6 +134,7 @@ static NSImage* _imageOfTextBoxBackgroundCanvasWithTextBoxCornerRadius = nil;
 
 + (NSShadow*)upperShadowEdge { return _upperShadowEdge; }
 + (NSShadow*)textBoxEdgeHighligh { return _textBoxEdgeHighligh; }
++ (NSShadow*)textBoxInnerShadow { return _textBoxInnerShadow; }
 
 #pragma mark Drawing Methods
 
@@ -187,6 +194,8 @@ static NSImage* _imageOfTextBoxBackgroundCanvasWithTextBoxCornerRadius = nil;
 
 + (void)drawTextBoxBackgroundCanvasWithTextBoxCornerRadius: (CGFloat)textBoxCornerRadius textBoxRectangleX: (CGFloat)textBoxRectangleX textBoxRectangleY: (CGFloat)textBoxRectangleY textBoxWidth: (CGFloat)textBoxWidth textboxHeight: (CGFloat)textboxHeight textBoxStrokeWidth: (CGFloat)textBoxStrokeWidth
 {
+    //// General Declarations
+    CGContextRef context = (CGContextRef)NSGraphicsContext.currentContext.graphicsPort;
     
     //// textBoxRectangle Drawing
     NSBezierPath* textBoxRectanglePath = [NSBezierPath bezierPathWithRoundedRect: NSMakeRect(textBoxRectangleX, textBoxRectangleY, textBoxWidth, textboxHeight) xRadius: textBoxCornerRadius yRadius: textBoxCornerRadius];
@@ -194,12 +203,39 @@ static NSImage* _imageOfTextBoxBackgroundCanvasWithTextBoxCornerRadius = nil;
     [DE_Drawing.textBoxEdgeHighligh set];
     [DE_Drawing.textBoxFillColor setFill];
     [textBoxRectanglePath fill];
+    
+    ////// textBoxRectangle Inner Shadow
+    [NSGraphicsContext saveGraphicsState];
+    NSRectClip(textBoxRectanglePath.bounds);
+    CGContextSetShadowWithColor(context, CGSizeZero, 0, NULL);
+    
+    CGContextSetAlpha(context, DE_Drawing.textBoxInnerShadow.shadowColor.alphaComponent);
+    CGContextBeginTransparencyLayer(context, NULL);
+    {
+        NSShadow* opaqueShadow = NSShadow.alloc.init;
+        opaqueShadow.shadowColor = [DE_Drawing.textBoxInnerShadow.shadowColor colorWithAlphaComponent: 1];
+        opaqueShadow.shadowOffset = DE_Drawing.textBoxInnerShadow.shadowOffset;
+        opaqueShadow.shadowBlurRadius = DE_Drawing.textBoxInnerShadow.shadowBlurRadius;
+        [opaqueShadow set];
+        
+        CGContextSetBlendMode(context, kCGBlendModeSourceOut);
+        CGContextBeginTransparencyLayer(context, NULL);
+        
+        [opaqueShadow.shadowColor setFill];
+        [textBoxRectanglePath fill];
+        
+        CGContextEndTransparencyLayer(context);
+    }
+    CGContextEndTransparencyLayer(context);
+    [NSGraphicsContext restoreGraphicsState];
+    
     [NSGraphicsContext restoreGraphicsState];
     
     [DE_Drawing.textBoxStrokeColor setStroke];
     [textBoxRectanglePath setLineWidth: textBoxStrokeWidth];
     [textBoxRectanglePath stroke];
 }
+
 
 #pragma mark Generated Images
 

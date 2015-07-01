@@ -715,15 +715,6 @@
                     <customView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="l11-H4-B0B" customClass="DE_Background">
                         <rect key="frame" x="0.0" y="0.0" width="640" height="480"/>
                         <subviews>
-                            <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="AjA-eO-S7c">
-                                <rect key="frame" x="272" y="268" width="100" height="27"/>
-                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="sYh-v4-qRe" customClass="DE_TextFieldCell">
-                                    <numberFormatter key="formatter" formatterBehavior="default10_4" numberStyle="decimal" minimumIntegerDigits="1" maximumIntegerDigits="2000000000" maximumFractionDigits="3" id="8e1-lX-ndg"/>
-                                    <font key="font" metaFont="system"/>
-                                    <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
-                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                </textFieldCell>
-                            </textField>
                             <stepper horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="d3o-19-faX">
                                 <rect key="frame" x="436" y="219" width="19" height="27"/>
                                 <stepperCell key="cell" continuous="YES" alignment="left" maxValue="100" id="HE8-oJ-ih2"/>
@@ -800,6 +791,15 @@
                                     </objectValues>
                                 </comboBoxCell>
                             </comboBox>
+                            <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="AjA-eO-S7c">
+                                <rect key="frame" x="270" y="252" width="120" height="27"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="sYh-v4-qRe" customClass="DE_TextFieldCell">
+                                    <numberFormatter key="formatter" formatterBehavior="default10_4" numberStyle="decimal" minimumIntegerDigits="1" maximumIntegerDigits="2000000000" maximumFractionDigits="3" id="8e1-lX-ndg"/>
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
                         </subviews>
                     </customView>
                 </subviews>

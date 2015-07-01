@@ -36,6 +36,7 @@
 + (NSShadow*)sidePanelRightHighlight;
 + (NSShadow*)upperShadowEdge;
 + (NSShadow*)textBoxEdgeHighligh;
++ (NSShadow*)textBoxInnerShadow;
 
 // Drawing Methods
 + (void)drawStylingCanvas;

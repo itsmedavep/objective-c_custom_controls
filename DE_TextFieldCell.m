@@ -19,17 +19,21 @@
 
 - (void)drawWithFrame:(NSRect)cellFrame inView:(NSView *)controlView {
     
+//    [super drawWithFrame:cellFrame inView:controlView];
+
+    
+    [DE_Drawing drawTextBoxBackgroundCanvasWithTextBoxCornerRadius:2 textBoxRectangleX:1.5 textBoxRectangleY:1.5 textBoxWidth:110 textboxHeight:22 textBoxStrokeWidth:2];
+    
+    
 //    NSRect newCellFrame = cellFrame;
     
-    if (self.highlighted) {
-        [DE_Drawing drawTextBoxBackgroundCanvasWithTextBoxCornerRadius:4 textBoxRectangleX:2.5 textBoxRectangleY:2.5 textBoxWidth:96 textboxHeight:22 textBoxStrokeWidth:2];
-    } else {
-        [DE_Drawing drawTextBoxBackgroundCanvasWithTextBoxCornerRadius:4 textBoxRectangleX:2.5 textBoxRectangleY:2.5 textBoxWidth:96 textboxHeight:22 textBoxStrokeWidth:2];
-    }
+//    if (self.highlighted) {
+//        [DE_Drawing drawTextBoxBackgroundCanvasWithTextBoxCornerRadius:4 textBoxRectangleX:2.5 textBoxRectangleY:2.5 textBoxWidth:96 textboxHeight:22 textBoxStrokeWidth:2];
+//    } else {
+//        [DE_Drawing drawTextBoxBackgroundCanvasWithTextBoxCornerRadius:4 textBoxRectangleX:2.5 textBoxRectangleY:2.5 textBoxWidth:96 textboxHeight:22 textBoxStrokeWidth:2];
+//    }
     
-    
-//    [super drawWithFrame:newCellFrame inView:controlView];
-    
+//    [super drawWithFrame:cellFrame inView:controlView];
 }
 
 @end
