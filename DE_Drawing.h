@@ -40,11 +40,11 @@
 
 // Drawing Methods
 + (void)drawStylingCanvas;
-+ (void)drawTextBoxBackgroundCanvasWithTextBoxCornerRadius: (CGFloat)textBoxCornerRadius textBoxRectangleX: (CGFloat)textBoxRectangleX textBoxRectangleY: (CGFloat)textBoxRectangleY textBoxWidth: (CGFloat)textBoxWidth textboxHeight: (CGFloat)textboxHeight textBoxStrokeWidth: (CGFloat)textBoxStrokeWidth;
++ (void)drawTextBoxBackgroundCanvasWithTextBoxFrame: (NSRect)textBoxFrame textBoxCornerRadius: (CGFloat)textBoxCornerRadius textBoxStrokeWidth: (CGFloat)textBoxStrokeWidth;
 
 // Generated Images
 + (NSImage*)imageOfStylingCanvas;
-+ (NSImage*)imageOfTextBoxBackgroundCanvasWithTextBoxCornerRadius: (CGFloat)textBoxCornerRadius textBoxRectangleX: (CGFloat)textBoxRectangleX textBoxRectangleY: (CGFloat)textBoxRectangleY textBoxWidth: (CGFloat)textBoxWidth textboxHeight: (CGFloat)textboxHeight textBoxStrokeWidth: (CGFloat)textBoxStrokeWidth;
++ (NSImage*)imageOfTextBoxBackgroundCanvasWithTextBoxFrame: (NSRect)textBoxFrame textBoxCornerRadius: (CGFloat)textBoxCornerRadius textBoxStrokeWidth: (CGFloat)textBoxStrokeWidth;
 
 @end
 
