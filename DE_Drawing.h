@@ -26,6 +26,7 @@
 + (NSColor*)textBoxOuterShadowColor;
 + (NSColor*)textBoxFillColor;
 + (NSColor*)textBoxStrokeColor;
++ (NSColor*)textBoxFieldLabelColor;
 
 // Gradients
 + (NSGradient*)upperShadow;
@@ -40,11 +41,11 @@
 
 // Drawing Methods
 + (void)drawStylingCanvas;
-+ (void)drawTextBoxBackgroundCanvasWithTextBoxFrame: (NSRect)textBoxFrame textBoxCornerRadius: (CGFloat)textBoxCornerRadius textBoxStrokeWidth: (CGFloat)textBoxStrokeWidth;
++ (void)drawTextBoxBackgroundCanvasWithTextBoxFrame: (NSRect)textBoxFrame textBoxCornerRadius: (CGFloat)textBoxCornerRadius textBoxStrokeWidth: (CGFloat)textBoxStrokeWidth textFieldBoxLabel: (NSString*)textFieldBoxLabel textBoxLabelSize: (CGFloat)textBoxLabelSize;
 
 // Generated Images
 + (NSImage*)imageOfStylingCanvas;
-+ (NSImage*)imageOfTextBoxBackgroundCanvasWithTextBoxFrame: (NSRect)textBoxFrame textBoxCornerRadius: (CGFloat)textBoxCornerRadius textBoxStrokeWidth: (CGFloat)textBoxStrokeWidth;
++ (NSImage*)imageOfTextBoxBackgroundCanvasWithTextBoxFrame: (NSRect)textBoxFrame textBoxCornerRadius: (CGFloat)textBoxCornerRadius textBoxStrokeWidth: (CGFloat)textBoxStrokeWidth textFieldBoxLabel: (NSString*)textFieldBoxLabel textBoxLabelSize: (CGFloat)textBoxLabelSize;
 
 @end
 

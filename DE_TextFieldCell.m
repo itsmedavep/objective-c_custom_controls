@@ -15,7 +15,7 @@
 
 - (void)drawWithFrame:(NSRect)cellFrame inView:(NSView *)controlView {
     
-    [DE_Drawing drawTextBoxBackgroundCanvasWithTextBoxFrame:self.controlView.bounds textBoxCornerRadius:4 textBoxStrokeWidth:1];
+    [DE_Drawing drawTextBoxBackgroundCanvasWithTextBoxFrame:self.controlView.bounds textBoxCornerRadius:4 textBoxStrokeWidth:1 textFieldBoxLabel:@"20,000 Hz" textBoxLabelSize:12];
     
 }
 
