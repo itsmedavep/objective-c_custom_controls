@@ -32,7 +32,7 @@ static NSColor* _backgroundRectColor = nil;
 static NSColor* _textBoxOuterShadowColor = nil;
 static NSColor* _textBoxFillColor = nil;
 static NSColor* _textBoxStrokeColor = nil;
-static NSColor* _textBoxFieldLabelColor = nil;
+static NSColor* _textBoxShadowColor = nil;
 
 static NSGradient* _upperShadow = nil;
 static NSGradient* _lowerShadow = nil;
@@ -68,10 +68,10 @@ static NSImage* _imageOfTextBoxBackgroundCanvasWithTextBoxCornerRadius = nil;
     _backgroundRectColor = [NSColor colorWithCalibratedRed: 0.314 green: 0.314 blue: 0.314 alpha: 1];
     
     _textBoxOuterShadowColor = [NSColor colorWithCalibratedRed: 1 green: 1 blue: 1 alpha: 1];
-    _textBoxFillColor = [NSColor colorWithCalibratedRed: 0.29 green: 0.29 blue: 0.29 alpha: 1];
+    _textBoxFillColor = [NSColor colorWithCalibratedRed: 0.2 green: 0.2 blue: 0.2 alpha: 1];
 //    _textBoxFillColor = [NSColor redColor];
-    _textBoxStrokeColor = [NSColor colorWithCalibratedRed: 0.208 green: 0.208 blue: 0.208 alpha: 1];
-    _textBoxFieldLabelColor = [NSColor colorWithCalibratedRed: 1 green: 1 blue: 1 alpha: 1];
+    _textBoxStrokeColor = [NSColor colorWithCalibratedRed: 0 green: 0 blue: 0 alpha: 1];
+    _textBoxShadowColor = [NSColor colorWithCalibratedRed: 0 green: 0 blue: 0 alpha: 1];
     
     // Gradients Initialization
     _upperShadow = [NSGradient.alloc initWithStartingColor: DE_Drawing.upperShadowUpperStop endingColor: DE_Drawing.upperShadowBottomStop];
@@ -94,14 +94,16 @@ static NSImage* _imageOfTextBoxBackgroundCanvasWithTextBoxCornerRadius = nil;
     [_upperShadowEdge setShadowBlurRadius: 0];
     
     _textBoxEdgeHighligh = NSShadow.alloc.init;
-    [_textBoxEdgeHighligh setShadowColor: [DE_Drawing.textBoxOuterShadowColor colorWithAlphaComponent: 0.75]];
+    [_textBoxEdgeHighligh setShadowColor: [DE_Drawing.textBoxOuterShadowColor colorWithAlphaComponent: 0.40]];
     [_textBoxEdgeHighligh setShadowOffset: NSMakeSize(0.1, -1.1)];
     [_textBoxEdgeHighligh setShadowBlurRadius: 2];
     
     _textBoxInnerShadow = NSShadow.alloc.init;
-    [_textBoxInnerShadow setShadowColor: NSColor.blackColor];
+    [_textBoxInnerShadow setShadowColor: [DE_Drawing.textBoxShadowColor colorWithAlphaComponent: 0.2]];
     [_textBoxInnerShadow setShadowOffset: NSMakeSize(0.1, -1.1)];
     [_textBoxInnerShadow setShadowBlurRadius: 5];
+    
+    
     
 }
 
@@ -124,7 +126,7 @@ static NSImage* _imageOfTextBoxBackgroundCanvasWithTextBoxCornerRadius = nil;
 + (NSColor*)textBoxOuterShadowColor { return _textBoxOuterShadowColor; }
 + (NSColor*)textBoxFillColor { return _textBoxFillColor; }
 + (NSColor*)textBoxStrokeColor { return _textBoxStrokeColor; }
-+ (NSColor*)textBoxFieldLabelColor { return _textBoxFieldLabelColor; }
++ (NSColor*)textBoxShadowColor { return _textBoxShadowColor; }
 
 #pragma mark Gradients
 
@@ -196,14 +198,13 @@ static NSImage* _imageOfTextBoxBackgroundCanvasWithTextBoxCornerRadius = nil;
     
 }
 
-+ (void)drawTextBoxBackgroundCanvasWithTextBoxFrame: (NSRect)textBoxFrame textBoxCornerRadius: (CGFloat)textBoxCornerRadius textBoxStrokeWidth: (CGFloat)textBoxStrokeWidth textFieldBoxLabel: (NSString*)textFieldBoxLabel textBoxLabelSize: (CGFloat)textBoxLabelSize
++ (void)drawTextBoxBackgroundCanvasWithTextBoxFrame: (NSRect)textBoxFrame textBoxCornerRadius: (CGFloat)textBoxCornerRadius textBoxStrokeWidth: (CGFloat)textBoxStrokeWidth
 {
     //// General Declarations
     CGContextRef context = (CGContextRef)NSGraphicsContext.currentContext.graphicsPort;
     
     //// textBoxRectangle Drawing
-    NSRect textBoxRectangleRect = NSMakeRect(NSMinX(textBoxFrame) + 3.5, NSMinY(textBoxFrame) + 4.5, NSWidth(textBoxFrame) - 4, NSHeight(textBoxFrame) - 6);
-    NSBezierPath* textBoxRectanglePath = [NSBezierPath bezierPathWithRoundedRect: textBoxRectangleRect xRadius: textBoxCornerRadius yRadius: textBoxCornerRadius];
+    NSBezierPath* textBoxRectanglePath = [NSBezierPath bezierPathWithRoundedRect: NSMakeRect(NSMinX(textBoxFrame) + .5, NSMinY(textBoxFrame) + .5, NSWidth(textBoxFrame) - 1, NSHeight(textBoxFrame) - 2) xRadius: textBoxCornerRadius yRadius: textBoxCornerRadius];
     [NSGraphicsContext saveGraphicsState];
     [DE_Drawing.textBoxEdgeHighligh set];
     [DE_Drawing.textBoxFillColor setFill];
@@ -218,7 +219,7 @@ static NSImage* _imageOfTextBoxBackgroundCanvasWithTextBoxCornerRadius = nil;
     CGContextBeginTransparencyLayer(context, NULL);
     {
         NSShadow* opaqueShadow = NSShadow.alloc.init;
-        opaqueShadow.shadowColor = [DE_Drawing.textBoxInnerShadow.shadowColor colorWithAlphaComponent: 0];
+        opaqueShadow.shadowColor = [DE_Drawing.textBoxInnerShadow.shadowColor colorWithAlphaComponent: 1];
         opaqueShadow.shadowOffset = DE_Drawing.textBoxInnerShadow.shadowOffset;
         opaqueShadow.shadowBlurRadius = DE_Drawing.textBoxInnerShadow.shadowBlurRadius;
         [opaqueShadow set];
@@ -239,18 +240,7 @@ static NSImage* _imageOfTextBoxBackgroundCanvasWithTextBoxCornerRadius = nil;
     [DE_Drawing.textBoxStrokeColor setStroke];
     [textBoxRectanglePath setLineWidth: textBoxStrokeWidth];
     [textBoxRectanglePath stroke];
-    NSMutableParagraphStyle* textBoxRectangleStyle = NSMutableParagraphStyle.defaultParagraphStyle.mutableCopy;
-    textBoxRectangleStyle.alignment = NSLeftTextAlignment;
     
-    NSDictionary* textBoxRectangleFontAttributes = @{NSFontAttributeName: [NSFont fontWithName: @"Helvetica" size: textBoxLabelSize], NSForegroundColorAttributeName: DE_Drawing.textBoxFieldLabelColor, NSParagraphStyleAttributeName: textBoxRectangleStyle};
-    
-    NSRect textBoxRectangleInset = NSInsetRect(textBoxRectangleRect, 5, 0);
-    CGFloat textBoxRectangleTextHeight = NSHeight([textFieldBoxLabel boundingRectWithSize: textBoxRectangleInset.size options: NSStringDrawingUsesLineFragmentOrigin attributes: textBoxRectangleFontAttributes]);
-    NSRect textBoxRectangleTextRect = NSMakeRect(NSMinX(textBoxRectangleInset), NSMinY(textBoxRectangleInset) + (NSHeight(textBoxRectangleInset) - textBoxRectangleTextHeight) / 2, NSWidth(textBoxRectangleInset), textBoxRectangleTextHeight);
-    [NSGraphicsContext saveGraphicsState];
-    NSRectClip(textBoxRectangleInset);
-    [textFieldBoxLabel drawInRect: NSOffsetRect(textBoxRectangleTextRect, 0, 1) withAttributes: textBoxRectangleFontAttributes];
-    [NSGraphicsContext restoreGraphicsState];
 }
 
 
@@ -270,16 +260,17 @@ static NSImage* _imageOfTextBoxBackgroundCanvasWithTextBoxCornerRadius = nil;
     return _imageOfStylingCanvas;
 }
 
-+ (NSImage*)imageOfTextBoxBackgroundCanvasWithTextBoxFrame: (NSRect)textBoxFrame textBoxCornerRadius: (CGFloat)textBoxCornerRadius textBoxStrokeWidth: (CGFloat)textBoxStrokeWidth textFieldBoxLabel: (NSString*)textFieldBoxLabel textBoxLabelSize: (CGFloat)textBoxLabelSize
++ (NSImage*)imageOfTextBoxBackgroundCanvasWithTextBoxFrame: (NSRect)textBoxFrame textBoxCornerRadius: (CGFloat)textBoxCornerRadius textBoxStrokeWidth: (CGFloat)textBoxStrokeWidth
 {
     NSImage* imageOfTextBoxBackgroundCanvas = [NSImage.alloc initWithSize: textBoxFrame.size];
     [imageOfTextBoxBackgroundCanvas lockFocus];
-    [DE_Drawing drawTextBoxBackgroundCanvasWithTextBoxFrame: textBoxFrame textBoxCornerRadius: textBoxCornerRadius textBoxStrokeWidth: textBoxStrokeWidth textFieldBoxLabel: textFieldBoxLabel textBoxLabelSize: textBoxLabelSize];
+    [DE_Drawing drawTextBoxBackgroundCanvasWithTextBoxFrame: textBoxFrame textBoxCornerRadius: textBoxCornerRadius textBoxStrokeWidth: textBoxStrokeWidth];
     
     [imageOfTextBoxBackgroundCanvas unlockFocus];
     
     return imageOfTextBoxBackgroundCanvas;
 }
+
 @end
 
 
