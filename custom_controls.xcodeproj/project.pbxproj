@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		24160C351B534D0A0096F4E8 /* DE_SliderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 24160C341B534D0A0096F4E8 /* DE_SliderCell.m */; };
 		2444438E1B35DDDC00E725A9 /* DE_Drawing.m in Sources */ = {isa = PBXBuildFile; fileRef = 2444438D1B35DDDC00E725A9 /* DE_Drawing.m */; };
 		246ECB0F1B325CEF00C2129D /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 246ECB0E1B325CEF00C2129D /* AppDelegate.m */; };
 		246ECB111B325CEF00C2129D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 246ECB101B325CEF00C2129D /* main.m */; };
@@ -28,6 +29,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		24160C331B534D0A0096F4E8 /* DE_SliderCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DE_SliderCell.h; sourceTree = "<group>"; };
+		24160C341B534D0A0096F4E8 /* DE_SliderCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DE_SliderCell.m; sourceTree = "<group>"; };
 		2444438C1B35DDDC00E725A9 /* DE_Drawing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DE_Drawing.h; sourceTree = "<group>"; };
 		2444438D1B35DDDC00E725A9 /* DE_Drawing.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DE_Drawing.m; sourceTree = "<group>"; };
 		246ECB081B325CEF00C2129D /* custom_controls.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = custom_controls.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -67,6 +70,8 @@
 		246ECAFF1B325CEF00C2129D = {
 			isa = PBXGroup;
 			children = (
+				24160C331B534D0A0096F4E8 /* DE_SliderCell.h */,
+				24160C341B534D0A0096F4E8 /* DE_SliderCell.m */,
 				24D35AD71B38D6F000F06C9F /* DE_TextFieldCell.h */,
 				24D35AD81B38D6F000F06C9F /* DE_TextFieldCell.m */,
 				24BF09A91B360EBB002AB758 /* DE_Background.h */,
@@ -230,6 +235,7 @@
 				24BF09AB1B360EBB002AB758 /* DE_Background.m in Sources */,
 				2444438E1B35DDDC00E725A9 /* DE_Drawing.m in Sources */,
 				24D35AD91B38D6F000F06C9F /* DE_TextFieldCell.m in Sources */,
+				24160C351B534D0A0096F4E8 /* DE_SliderCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

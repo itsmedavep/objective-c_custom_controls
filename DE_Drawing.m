@@ -34,6 +34,8 @@ static NSColor* _textBoxFillColor = nil;
 static NSColor* _textBoxStrokeColor = nil;
 static NSColor* _textBoxShadowColor = nil;
 
+static NSColor* _sliderThumbMiddleColor = nil;
+
 static NSGradient* _upperShadow = nil;
 static NSGradient* _lowerShadow = nil;
 
@@ -72,6 +74,8 @@ static NSImage* _imageOfTextBoxBackgroundCanvasWithTextBoxCornerRadius = nil;
 //    _textBoxFillColor = [NSColor redColor];
     _textBoxStrokeColor = [NSColor colorWithCalibratedRed: 0 green: 0 blue: 0 alpha: 1];
     _textBoxShadowColor = [NSColor colorWithCalibratedRed: 0 green: 0 blue: 0 alpha: 1];
+    
+    _sliderThumbMiddleColor = [NSColor colorWithCalibratedRed: 1 green: 0.478 blue: 0 alpha: 1];
     
     // Gradients Initialization
     _upperShadow = [NSGradient.alloc initWithStartingColor: DE_Drawing.upperShadowUpperStop endingColor: DE_Drawing.upperShadowBottomStop];
@@ -127,6 +131,8 @@ static NSImage* _imageOfTextBoxBackgroundCanvasWithTextBoxCornerRadius = nil;
 + (NSColor*)textBoxFillColor { return _textBoxFillColor; }
 + (NSColor*)textBoxStrokeColor { return _textBoxStrokeColor; }
 + (NSColor*)textBoxShadowColor { return _textBoxShadowColor; }
+
++ (NSColor*)sliderThumbMiddleColor { return _sliderThumbMiddleColor; }
 
 #pragma mark Gradients
 
@@ -241,6 +247,103 @@ static NSImage* _imageOfTextBoxBackgroundCanvasWithTextBoxCornerRadius = nil;
     [textBoxRectanglePath setLineWidth: textBoxStrokeWidth];
     [textBoxRectanglePath stroke];
     
+}
+
++ (void)drawSliderThumbWithFrame: (NSRect)frame {
+    
+    //// General Declarations
+    CGContextRef context = (CGContextRef)NSGraphicsContext.currentContext.graphicsPort;
+    
+    NSColor* sliderTrackStrokeColor = [NSColor colorWithCalibratedRed: 0.208 green: 0.208 blue: 0.208 alpha: 1];
+    NSColor* sliderThumbGradientColor = [NSColor colorWithCalibratedRed: 0.216 green: 0.216 blue: 0.216 alpha: 1];
+    NSColor* sliderThumbGradientColor2 = [NSColor colorWithCalibratedRed: 0.286 green: 0.286 blue: 0.286 alpha: 1];
+    
+    //// Gradient Declarations
+    NSGradient* sliderThumbGradient = [NSGradient.alloc initWithStartingColor: sliderThumbGradientColor2 endingColor: sliderThumbGradientColor];
+    
+    //// Shadow Declarations
+    NSShadow* sliderThumbDropShadow = NSShadow.alloc.init;
+    [sliderThumbDropShadow setShadowColor: [NSColor.blackColor colorWithAlphaComponent: 0.5]];
+    [sliderThumbDropShadow setShadowOffset: NSMakeSize(0.1, -4.1)];
+    [sliderThumbDropShadow setShadowBlurRadius: 10];
+    
+    //// sliderThumbGroup
+    {
+        //// sliderThumb Drawing
+        NSBezierPath* sliderThumbPath = [NSBezierPath bezierPathWithOvalInRect: NSMakeRect(NSMinX(frame) + .5, NSMinY(frame) + NSHeight(frame) - 16, 16, 16)];
+        [NSGraphicsContext saveGraphicsState];
+        [sliderThumbDropShadow set];
+        CGContextBeginTransparencyLayer(context, NULL);
+        [sliderThumbGradient drawInBezierPath: sliderThumbPath angle: -90];
+        CGContextEndTransparencyLayer(context);
+        
+        ////// sliderThumb Inner Shadow
+        [NSGraphicsContext saveGraphicsState];
+        NSRectClip(sliderThumbPath.bounds);
+        CGContextSetShadowWithColor(context, CGSizeZero, 0, NULL);
+        
+        CGContextSetAlpha(context, DE_Drawing.textBoxEdgeHighligh.shadowColor.alphaComponent);
+        CGContextBeginTransparencyLayer(context, NULL);
+        {
+            NSShadow* opaqueShadow = NSShadow.alloc.init;
+            opaqueShadow.shadowColor = [DE_Drawing.textBoxEdgeHighligh.shadowColor colorWithAlphaComponent: 1];
+            opaqueShadow.shadowOffset = DE_Drawing.textBoxEdgeHighligh.shadowOffset;
+            opaqueShadow.shadowBlurRadius = DE_Drawing.textBoxEdgeHighligh.shadowBlurRadius;
+            [opaqueShadow set];
+            
+            CGContextSetBlendMode(context, kCGBlendModeSourceOut);
+            CGContextBeginTransparencyLayer(context, NULL);
+            
+            [opaqueShadow.shadowColor setFill];
+            [sliderThumbPath fill];
+            
+            CGContextEndTransparencyLayer(context);
+        }
+        CGContextEndTransparencyLayer(context);
+        [NSGraphicsContext restoreGraphicsState];
+        
+        [NSGraphicsContext restoreGraphicsState];
+        
+        [sliderTrackStrokeColor setStroke];
+        [sliderThumbPath setLineWidth: 1];
+        [sliderThumbPath stroke];
+        
+        
+        //// sliderThumbMiddle Drawing
+        NSBezierPath* sliderThumbMiddlePath = [NSBezierPath bezierPathWithRect: NSMakeRect(NSMinX(frame) + .5, NSMinY(frame) + NSHeight(frame) - 16, 1, 8)];
+        [NSGraphicsContext saveGraphicsState];
+        [sliderThumbDropShadow set];
+        [DE_Drawing.sliderThumbMiddleColor setFill];
+        [sliderThumbMiddlePath fill];
+        
+        ////// sliderThumbMiddle Inner Shadow
+        [NSGraphicsContext saveGraphicsState];
+        NSRectClip(sliderThumbMiddlePath.bounds);
+        CGContextSetShadowWithColor(context, CGSizeZero, 0, NULL);
+        
+        CGContextSetAlpha(context, DE_Drawing.textBoxEdgeHighligh.shadowColor.alphaComponent);
+        CGContextBeginTransparencyLayer(context, NULL);
+        {
+            NSShadow* opaqueShadow = NSShadow.alloc.init;
+            opaqueShadow.shadowColor = [DE_Drawing.textBoxEdgeHighligh.shadowColor colorWithAlphaComponent: 1];
+            opaqueShadow.shadowOffset = DE_Drawing.textBoxEdgeHighligh.shadowOffset;
+            opaqueShadow.shadowBlurRadius = DE_Drawing.textBoxEdgeHighligh.shadowBlurRadius;
+            [opaqueShadow set];
+            
+            CGContextSetBlendMode(context, kCGBlendModeSourceOut);
+            CGContextBeginTransparencyLayer(context, NULL);
+            
+            [opaqueShadow.shadowColor setFill];
+            [sliderThumbMiddlePath fill];
+            
+            CGContextEndTransparencyLayer(context);
+        }
+        CGContextEndTransparencyLayer(context);
+        [NSGraphicsContext restoreGraphicsState];
+        
+        [NSGraphicsContext restoreGraphicsState];
+        
+    }
 }
 
 

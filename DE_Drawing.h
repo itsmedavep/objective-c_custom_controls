@@ -27,6 +27,7 @@
 + (NSColor*)textBoxFillColor;
 + (NSColor*)textBoxStrokeColor;
 + (NSColor*)textBoxShadowColor;
++ (NSColor*)sliderThumbMiddleColor;
 
 // Gradients
 + (NSGradient*)upperShadow;
@@ -42,6 +43,7 @@
 // Drawing Methods
 + (void)drawStylingCanvas;
 + (void)drawTextBoxBackgroundCanvasWithTextBoxFrame: (NSRect)textBoxFrame textBoxCornerRadius: (CGFloat)textBoxCornerRadius textBoxStrokeWidth: (CGFloat)textBoxStrokeWidth;
++ (void)drawSliderThumbWithFrame: (NSRect)frame;
 
 // Generated Images
 + (NSImage*)imageOfStylingCanvas;

@@ -721,11 +721,11 @@
                             </stepper>
                             <slider verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="j5s-K8-VTh">
                                 <rect key="frame" x="274" y="118" width="96" height="20"/>
-                                <sliderCell key="cell" state="on" alignment="left" maxValue="100" doubleValue="50" tickMarkPosition="above" sliderType="linear" id="LAG-j7-5OM"/>
+                                <sliderCell key="cell" state="on" alignment="left" maxValue="100" doubleValue="30.604166666666664" tickMarkPosition="above" sliderType="linear" id="LAG-j7-5OM" customClass="DE_SliderCell"/>
                             </slider>
                             <slider horizontalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="SbN-1J-EgA">
                                 <rect key="frame" x="445" y="80" width="20" height="96"/>
-                                <sliderCell key="cell" alignment="left" maxValue="100" doubleValue="50" tickMarkPosition="right" sliderType="linear" id="Ex4-iR-i0M"/>
+                                <sliderCell key="cell" state="on" alignment="left" maxValue="100" doubleValue="79.885416666666657" tickMarkPosition="right" sliderType="linear" id="Ex4-iR-i0M"/>
                             </slider>
                             <popUpButton verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pdb-6l-MHK">
                                 <rect key="frame" x="94" y="278" width="100" height="26"/>
