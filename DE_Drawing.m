@@ -265,12 +265,12 @@ static NSImage* _imageOfTextBoxBackgroundCanvasWithTextBoxCornerRadius = nil;
     NSShadow* sliderThumbDropShadow = NSShadow.alloc.init;
     [sliderThumbDropShadow setShadowColor: [NSColor.blackColor colorWithAlphaComponent: 0.5]];
     [sliderThumbDropShadow setShadowOffset: NSMakeSize(0.1, -4.1)];
-    [sliderThumbDropShadow setShadowBlurRadius: 10];
+    [sliderThumbDropShadow setShadowBlurRadius: 5];
     
     //// sliderThumbGroup
     {
         //// sliderThumb Drawing
-        NSBezierPath* sliderThumbPath = [NSBezierPath bezierPathWithOvalInRect: NSMakeRect(NSMinX(frame) + .5, NSMinY(frame) + NSHeight(frame) - 16, 16, 16)];
+        NSBezierPath* sliderThumbPath = [NSBezierPath bezierPathWithOvalInRect: NSMakeRect(NSMinX(frame) + 2, NSMinY(frame) + NSHeight(frame) - 19, 16, 16)];
         [NSGraphicsContext saveGraphicsState];
         [sliderThumbDropShadow set];
         CGContextBeginTransparencyLayer(context, NULL);
@@ -279,7 +279,7 @@ static NSImage* _imageOfTextBoxBackgroundCanvasWithTextBoxCornerRadius = nil;
         
         ////// sliderThumb Inner Shadow
         [NSGraphicsContext saveGraphicsState];
-        NSRectClip(sliderThumbPath.bounds);
+//        NSRectClip(sliderThumbPath.bounds);
         CGContextSetShadowWithColor(context, CGSizeZero, 0, NULL);
         
         CGContextSetAlpha(context, DE_Drawing.textBoxEdgeHighligh.shadowColor.alphaComponent);
@@ -310,7 +310,7 @@ static NSImage* _imageOfTextBoxBackgroundCanvasWithTextBoxCornerRadius = nil;
         
         
         //// sliderThumbMiddle Drawing
-        NSBezierPath* sliderThumbMiddlePath = [NSBezierPath bezierPathWithRect: NSMakeRect(NSMinX(frame) + .5, NSMinY(frame) + NSHeight(frame) - 16, 1, 8)];
+        NSBezierPath* sliderThumbMiddlePath = [NSBezierPath bezierPathWithRect: NSMakeRect(NSMinX(frame) + 9.5, NSMinY(frame) + NSHeight(frame) - 15, 1, 8)];
         [NSGraphicsContext saveGraphicsState];
         [sliderThumbDropShadow set];
         [DE_Drawing.sliderThumbMiddleColor setFill];
@@ -318,7 +318,7 @@ static NSImage* _imageOfTextBoxBackgroundCanvasWithTextBoxCornerRadius = nil;
         
         ////// sliderThumbMiddle Inner Shadow
         [NSGraphicsContext saveGraphicsState];
-        NSRectClip(sliderThumbMiddlePath.bounds);
+//        NSRectClip(sliderThumbMiddlePath.bounds);
         CGContextSetShadowWithColor(context, CGSizeZero, 0, NULL);
         
         CGContextSetAlpha(context, DE_Drawing.textBoxEdgeHighligh.shadowColor.alphaComponent);
