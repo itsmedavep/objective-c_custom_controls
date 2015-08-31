@@ -346,6 +346,58 @@ static NSImage* _imageOfTextBoxBackgroundCanvasWithTextBoxCornerRadius = nil;
     }
 }
 
++ (void)drawSliderWithFrame: (NSRect)frame sliderTrackCornerRadius: (CGFloat)sliderTrackCornerRadius
+{
+    //// General Declarations
+    CGContextRef context = (CGContextRef)NSGraphicsContext.currentContext.graphicsPort;
+    
+    //// Color Declarations
+    NSColor* sliderTrackBackgroundColor = [NSColor colorWithCalibratedRed: 0.29 green: 0.29 blue: 0.29 alpha: 1];
+    NSColor* sliderTrackStrokeColor = [NSColor colorWithCalibratedRed: 0.208 green: 0.208 blue: 0.208 alpha: 1];
+    
+    //// sliderBackground Drawing
+    NSBezierPath* sliderBackgroundPath = [NSBezierPath bezierPathWithRoundedRect: NSMakeRect(NSMinX(frame) - 6.5, NSMinY(frame) + 6.5, NSWidth(frame) + 12, NSHeight(frame) - 8) xRadius: sliderTrackCornerRadius yRadius: sliderTrackCornerRadius];
+    [NSGraphicsContext saveGraphicsState];
+    [DE_Drawing.textBoxEdgeHighligh set];
+    [sliderTrackBackgroundColor setFill];
+    [sliderBackgroundPath fill];
+    [NSGraphicsContext restoreGraphicsState];
+    
+    [sliderTrackStrokeColor setStroke];
+    [sliderBackgroundPath setLineWidth: 1];
+    [sliderBackgroundPath stroke];
+    
+    
+    //// sliderBackgroundFilled Drawing
+    NSBezierPath* sliderBackgroundFilledPath = [NSBezierPath bezierPathWithRoundedRect: NSMakeRect(NSMinX(frame) - 6, NSMinY(frame) + NSHeight(frame) - 14, 155, 12) xRadius: 6 yRadius: 6];
+    [DE_Drawing.sliderThumbMiddleColor setFill];
+    [sliderBackgroundFilledPath fill];
+    
+    ////// sliderBackgroundFilled Inner Shadow
+    [NSGraphicsContext saveGraphicsState];
+    NSRectClip(sliderBackgroundFilledPath.bounds);
+    CGContextSetShadowWithColor(context, CGSizeZero, 0, NULL);
+    
+    CGContextSetAlpha(context, DE_Drawing.textBoxInnerShadow.shadowColor.alphaComponent);
+    CGContextBeginTransparencyLayer(context, NULL);
+    {
+        NSShadow* opaqueShadow = NSShadow.alloc.init;
+        opaqueShadow.shadowColor = [DE_Drawing.textBoxInnerShadow.shadowColor colorWithAlphaComponent: 1];
+        opaqueShadow.shadowOffset = DE_Drawing.textBoxInnerShadow.shadowOffset;
+        opaqueShadow.shadowBlurRadius = DE_Drawing.textBoxInnerShadow.shadowBlurRadius;
+        [opaqueShadow set];
+        
+        CGContextSetBlendMode(context, kCGBlendModeSourceOut);
+        CGContextBeginTransparencyLayer(context, NULL);
+        
+        [opaqueShadow.shadowColor setFill];
+        [sliderBackgroundFilledPath fill];
+        
+        CGContextEndTransparencyLayer(context);
+    }
+    CGContextEndTransparencyLayer(context);
+    [NSGraphicsContext restoreGraphicsState];
+}
 
 #pragma mark Generated Images
 

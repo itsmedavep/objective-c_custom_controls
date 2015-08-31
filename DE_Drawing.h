@@ -44,6 +44,7 @@
 + (void)drawStylingCanvas;
 + (void)drawTextBoxBackgroundCanvasWithTextBoxFrame: (NSRect)textBoxFrame textBoxCornerRadius: (CGFloat)textBoxCornerRadius textBoxStrokeWidth: (CGFloat)textBoxStrokeWidth;
 + (void)drawSliderThumbWithFrame: (NSRect)frame;
++ (void)drawSliderWithFrame: (NSRect)frame sliderTrackCornerRadius: (CGFloat)sliderTrackCornerRadius;
 
 // Generated Images
 + (NSImage*)imageOfStylingCanvas;
