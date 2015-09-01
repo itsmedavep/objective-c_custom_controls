@@ -11,4 +11,6 @@
 
 @interface DE_CheckBoxCell : NSButtonCell
 
+@property int scaleXby;
+
 @end
