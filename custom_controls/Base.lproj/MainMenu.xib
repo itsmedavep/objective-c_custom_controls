@@ -713,7 +713,7 @@
                         <subviews>
                             <stepper horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="d3o-19-faX">
                                 <rect key="frame" x="44" y="170" width="19" height="27"/>
-                                <stepperCell key="cell" continuous="YES" alignment="left" maxValue="100" id="HE8-oJ-ih2"/>
+                                <stepperCell key="cell" continuous="YES" alignment="left" maxValue="100" id="HE8-oJ-ih2" customClass="DE_StepperCell"/>
                             </stepper>
                             <slider verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="j5s-K8-VTh">
                                 <rect key="frame" x="45" y="402" width="144" height="20"/>
@@ -800,14 +800,32 @@
                                 </buttonCell>
                             </button>
                             <slider horizontalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="SbN-1J-EgA">
-                                <rect key="frame" x="260" y="170" width="20" height="292"/>
+                                <rect key="frame" x="260" y="366" width="20" height="96"/>
                                 <sliderCell key="cell" state="on" alignment="left" maxValue="100" doubleValue="79.885416666666657" tickMarkPosition="right" sliderType="linear" id="Ex4-iR-i0M" customClass="DE_SliderCell"/>
                             </slider>
+                            <box autoresizesSubviews="NO" fixedFrame="YES" title="Group Box" borderType="line" titlePosition="atBottom" translatesAutoresizingMaskIntoConstraints="NO" id="Pe3-y4-nWJ" customClass="DE_Box">
+                                <rect key="frame" x="299" y="333" width="294" height="129"/>
+                                <view key="contentView">
+                                    <rect key="frame" x="1" y="15" width="292" height="113"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                </view>
+                                <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
+                                <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            </box>
                         </subviews>
                     </customView>
                 </subviews>
             </view>
             <point key="canvasLocation" x="144" y="308"/>
         </window>
+        <collectionViewItem id="sgJ-Ir-oSg">
+            <connections>
+                <outlet property="view" destination="Sec-Of-IS6" id="QTH-71-rBc"/>
+            </connections>
+        </collectionViewItem>
+        <view id="Sec-Of-IS6">
+            <rect key="frame" x="0.0" y="0.0" width="100" height="100"/>
+            <autoresizingMask key="autoresizingMask"/>
+        </view>
     </objects>
 </document>

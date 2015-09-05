@@ -15,8 +15,6 @@
     
     [super drawKnob:frame];
     
-    
-    
     [DE_Drawing drawSliderThumbWithFrame:frame];
 }
 
@@ -37,7 +35,7 @@
         CGFloat barRadius = 2.5;
         
         // Knob position depending on control min/max value and current control value.
-        CGFloat value = ([self doubleValue]  - [self minValue]) / ([self maxValue] - [self minValue]);
+        CGFloat value = ([self doubleValue]  - [self maxValue]) / ([self minValue] - [self maxValue] - 4);
         
         // Final Left Part Width
         CGFloat finalHeight = value * ([[self controlView] frame].size.height - 2);
@@ -115,6 +113,7 @@
     }
     
     else {
+    
         
     aRect.size.height = 5;
     

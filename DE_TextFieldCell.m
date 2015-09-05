@@ -13,6 +13,11 @@
 
 @implementation DE_TextFieldCell
 
+- (void) awakeFromNib {
+    
+    
+}
+
 -(NSColor *)highlightColorWithFrame:(NSRect)cellFrame inView:(NSView *)controlView {
     return nil;
 }
@@ -26,6 +31,15 @@
         [self setBackgroundColor:[NSColor darkGrayColor]];
         [self drawInteriorWithFrame:cellFrame inView:controlView];
     }
+    
+    if (self.isHighlighted) {
+        [self setBackgroundColor:[DE_Drawing textBoxFillColor]];
+    }
+    
+    if (self.isEnabled) {
+        [self setBackgroundColor:[DE_Drawing textBoxFillColor]];
+    }
+    
 }
 
 -(void)drawInteriorWithFrame:(NSRect)cellFrame inView:(NSView *)controlView {
