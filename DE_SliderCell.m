@@ -20,14 +20,14 @@
 
 -(void)drawBarInside:(NSRect)aRect flipped:(BOOL)flipped {
     
-    //  [super drawBarInside:rect flipped:flipped];
+    //    TODO: Move all of this over to DE_Drawing
     
-    //// General Declarations
+    // General Declarations
     CGContextRef context = (CGContextRef)NSGraphicsContext.currentContext.graphicsPort;
     
     if (aRect.size.height >= aRect.size.width) {
-//        NSAffineTransform *myTransform = [NSAffineTransform transform];
-//        [myTransform rotateByDegrees:90];
+        
+        // Draw Vertical Slider
         
         aRect.size.width = 5;
         
@@ -40,13 +40,10 @@
         // Final Left Part Width
         CGFloat finalHeight = value * ([[self controlView] frame].size.height - 2);
         
-        // Left Part Rect
+        // Top Part Rect
         NSRect leftRect = aRect;
         leftRect.size.height = finalHeight;
         
-        //    NSLog(@"- Current Rect:%@ \n- Value:%f \n- Final Width:%f", NSStringFromRect(aRect), value, finalWidth);
-        
-        //    NSColor* sliderTrackBackgroundColor = [NSColor colorWithCalibratedRed: 0.29 green: 0.29 blue: 0.29 alpha: 1];
         NSColor* sliderTrackStrokeColor = [NSColor colorWithCalibratedRed: 0.208 green: 0.208 blue: 0.208 alpha: 1];
         
         // Draw Top Part
@@ -56,9 +53,7 @@
         [DE_Drawing.textBoxStrokeColor setStroke];
         [bg stroke];
         
-        //    NSRectClip(bg.bounds);
         CGContextSetShadowWithColor(context, CGSizeZero, 0, NULL);
-        
         CGContextSetAlpha(context, DE_Drawing.textBoxInnerShadow.shadowColor.alphaComponent);
         CGContextBeginTransparencyLayer(context, NULL);
         {
@@ -88,9 +83,7 @@
         [sliderTrackStrokeColor setStroke];
         [active stroke];
         
-        //    NSRectClip(active.bounds);
         CGContextSetShadowWithColor(context, CGSizeZero, 0, NULL);
-        
         CGContextSetAlpha(context, DE_Drawing.textBoxInnerShadow.shadowColor.alphaComponent);
         CGContextBeginTransparencyLayer(context, NULL);
         {
@@ -114,6 +107,7 @@
     
     else {
     
+    // Draw Horizontal Slider
         
     aRect.size.height = 5;
     
@@ -130,9 +124,6 @@
     NSRect leftRect = aRect;
     leftRect.size.width = finalWidth;
     
-//    NSLog(@"- Current Rect:%@ \n- Value:%f \n- Final Width:%f", NSStringFromRect(aRect), value, finalWidth);
-    
-//    NSColor* sliderTrackBackgroundColor = [NSColor colorWithCalibratedRed: 0.29 green: 0.29 blue: 0.29 alpha: 1];
     NSColor* sliderTrackStrokeColor = [NSColor colorWithCalibratedRed: 0.208 green: 0.208 blue: 0.208 alpha: 1];
     
     [NSGraphicsContext saveGraphicsState];
@@ -143,8 +134,7 @@
     [bg fill];
     [DE_Drawing.textBoxStrokeColor setStroke];
     [bg stroke];
-    
-//    NSRectClip(bg.bounds);
+
     CGContextSetShadowWithColor(context, CGSizeZero, 0, NULL);
     
     CGContextSetAlpha(context, DE_Drawing.textBoxInnerShadow.shadowColor.alphaComponent);
@@ -167,7 +157,6 @@
     CGContextEndTransparencyLayer(context);
     [NSGraphicsContext restoreGraphicsState];
     
-    
     // Draw Right Part
     NSBezierPath* active = [NSBezierPath bezierPathWithRoundedRect: leftRect xRadius: barRadius yRadius: barRadius];
     [DE_Drawing.sliderThumbMiddleColor setFill];
@@ -176,7 +165,6 @@
     [active stroke];
     
     [NSGraphicsContext saveGraphicsState];
-//    NSRectClip(active.bounds);
     CGContextSetShadowWithColor(context, CGSizeZero, 0, NULL);
     
     CGContextSetAlpha(context, DE_Drawing.textBoxInnerShadow.shadowColor.alphaComponent);
@@ -198,13 +186,6 @@
     }
     CGContextEndTransparencyLayer(context);
     [NSGraphicsContext restoreGraphicsState];
-
-    
-    
-    
-//    [DE_Drawing drawSliderWithFrame:frame sliderTrackCornerRadius:10];
-    
+    }
 }
-}
-
 @end

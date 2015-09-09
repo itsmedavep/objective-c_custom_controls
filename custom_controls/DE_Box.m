@@ -5,6 +5,31 @@
 //  Created by David Palmer on 9/4/15.
 //  Copyright (c) 2015 discode enterprises. All rights reserved.
 //
+//
+//  RoundedBox.m
+//  RoundedBox
+//
+//  Created by Matt Gemmell on 01/11/2005.
+//  Copyright 2006 Matt Gemmell. http://mattgemmell.com/
+//
+//  Permission to use this code:
+//
+//  Feel free to use this code in your software, either as-is or
+//  in a modified form. Either way, please include a credit in
+//  your software's "About" box or similar, mentioning at least
+//  my name (Matt Gemmell). A link to my site would be nice too.
+//
+//  Permission to redistribute this code:
+//
+//  You can redistribute this code, as long as you keep these
+//  comments. You can also redistribute modified versions of the
+//  code, as long as you add comments to say that you've made
+//  modifications (keeping these original comments too).
+//
+//  If you do use or redistribute this code, an email would be
+//  appreciated, just to let me know that people are finding my
+//  code useful. You can reach me at matt.gemmell@gmail.com
+//
 
 #import "DE_Box.h"
 
@@ -14,22 +39,17 @@
 {
     _drawsTitle = YES;
     [[self titleCell] setLineBreakMode:NSLineBreakByTruncatingTail];
-//    [[self titleCell] setEditable:YES];
-    
     [self setTitleColor:[NSColor whiteColor]];
-//    [self setTitleFont:[NSFont boldSystemFontOfSize:[NSFont systemFontSizeForControlSize:NSSmallControlSize]]];
 }
 
 - (void)awakeFromNib
 {
-    // For when we've been created in a nib file
     [self setDefaults];
 }
 
 
 - (BOOL)preservesContentDuringLiveResize
 {
-    // NSBox returns YES for this, but doing so would screw up the gradients.
     return NO;
 }
 
@@ -37,7 +57,6 @@
     [super drawRect:dirtyRect];
     
     // Drawing code here.
-
     // Create drawing rectangle for title
     
     NSDictionary *titleAttrs = [[[self titleCell] attributedStringValue] attributesAtIndex:0
@@ -52,16 +71,11 @@
     dirtyRect.size.height = ((dirtyRect.size.height - titleRect.size.height) - 2);
     [DE_Drawing drawTextBoxBackgroundCanvasWithTextBoxFrame:dirtyRect textBoxCornerRadius:4 textBoxStrokeWidth:1];
 
-    
-    // Draw title background
-//    NSBezierPath *titlePath = [self titlePathWithinRect:dirtyRect cornerRadius:0 titleRect:titleRect];
-//    [titlePath fill];
-//    titlePathRect = [titlePath bounds];
-    
-    // Draw title text using the titleCell
     if (_drawsTitle) {
         [[self titleCell] drawInteriorWithFrame:titleRect inView:self];
     }
+    
+    [self setNeedsDisplay:YES];
 }
 
 - (NSBezierPath *)titlePathWithinRect:(NSRect)rect cornerRadius:(float)radius titleRect:(NSRect)titleRect
@@ -73,26 +87,17 @@
     int maxX = minX + titleRect.size.width + ((titleRect.origin.x - rect.origin.x) * 2.0);
     int maxY = NSMaxY(bgRect);
     int minY = NSMinY(titleRect) - (maxY - (titleRect.origin.y + titleRect.size.height));
-    float titleExpansionThreshold = 20.0;
-    // i.e. if there's less than 20px space to the right of the short titlebar, just draw the full one.
     
     NSBezierPath *path = [NSBezierPath bezierPath];
     
     [path moveToPoint:NSMakePoint(minX, minY)];
     
-    if (bgRect.size.width - titleRect.size.width >= titleExpansionThreshold && _drawsTitle) {
         // Draw a short titlebar
         [path appendBezierPathWithArcFromPoint:NSMakePoint(maxX, minY)
                                        toPoint:NSMakePoint(maxX, maxY)
                                         radius:radius];
         [path lineToPoint:NSMakePoint(maxX, maxY)];
-    } else {
-        // Draw full titlebar, since we're either set to always do so, or we don't have room for a short one.
-        [path lineToPoint:NSMakePoint(NSMaxX(bgRect), minY)];
-        [path appendBezierPathWithArcFromPoint:NSMakePoint(NSMaxX(bgRect), maxY)
-                                       toPoint:NSMakePoint(NSMaxX(bgRect) - (bgRect.size.width / 2.0), maxY)
-                                        radius:radius];
-    }
+   
     
     [path appendBezierPathWithArcFromPoint:NSMakePoint(minX, maxY)
                                    toPoint:NSMakePoint(minX, minY)

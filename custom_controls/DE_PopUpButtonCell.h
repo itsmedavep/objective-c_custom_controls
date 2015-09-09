@@ -8,7 +8,6 @@
 
 #import <Cocoa/Cocoa.h>
 
-@interface DE_PopUpButtonCell : NSPopUpButtonCell
-
+@interface DE_PopUpButtonCell : NSPopUpButtonCell 
 
 @end

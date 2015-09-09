@@ -15,22 +15,26 @@
 
 - (void)drawWithFrame:(NSRect)cellFrame inView:(NSView *)controlView {
  
-    //// General Declarations
+    // General Declarations
     CGContextRef context = (CGContextRef)NSGraphicsContext.currentContext.graphicsPort;
     
+    // Moving origin over to draw @1x better
     cellFrame.origin.x = 0.5;
     cellFrame.origin.y = 0.5;
     
-    //// Color Declarations
+    // Color Declarations
     NSColor* sliderThumbGradientColor = [NSColor colorWithCalibratedRed: 0.216 green: 0.216 blue: 0.216 alpha: 1];
     NSColor* sliderThumbGradientColor2 = [NSColor colorWithCalibratedRed: 0.286 green: 0.286 blue: 0.286 alpha: 1];
     
-    //// Gradient Declarations
+    // Gradient Declarations
     NSGradient* sliderThumbGradient = [NSGradient.alloc initWithStartingColor: sliderThumbGradientColor2 endingColor: sliderThumbGradientColor];
     
-    //// Rectangle Drawing
+    
+    [NSGraphicsContext saveGraphicsState];
+    
+    // Rectangle Drawing
     CGFloat rectangleCornerRadius = 2;
-    NSRect rectangleRect = NSMakeRect(0.5, 0.5, ((cellFrame.size.width) - 5), ((cellFrame.size.height) - 6));
+    NSRect rectangleRect = NSMakeRect((cellFrame.origin.x), (cellFrame.origin.y), ((cellFrame.size.width) - 5), ((cellFrame.size.height) - 6));
     NSRect rectangleInnerRect = NSInsetRect(rectangleRect, rectangleCornerRadius, rectangleCornerRadius);
     NSBezierPath* rectanglePath = NSBezierPath.bezierPath;
     [rectanglePath moveToPoint: NSMakePoint(NSMinX(rectangleRect), NSMinY(rectangleRect))];
@@ -41,8 +45,7 @@
     [sliderThumbGradient drawInBezierPath: rectanglePath angle: -90];
 
     
-    ////// Rectangle Inner Shadow
-    [NSGraphicsContext saveGraphicsState];
+    // Rectangle Inner Shadow
     NSRectClip(rectanglePath.bounds);
     CGContextSetShadowWithColor(context, CGSizeZero, 0, NULL);
     
@@ -70,9 +73,9 @@
     [rectanglePath setLineWidth: 1];
     [rectanglePath stroke];
 
-    //// chevronUpArrow
+    // chevronUpArrow
     {
-        //// Rectangle 2 Drawing
+        // Rectangle 2 Drawing
         [NSGraphicsContext saveGraphicsState];
         CGContextTranslateCTM(context, NSMinX(cellFrame) + 5, NSMaxY(cellFrame) - 11);
         CGContextRotateCTM(context, 45 * M_PI / 180);
@@ -84,7 +87,7 @@
         [NSGraphicsContext restoreGraphicsState];
         
         
-        //// Rectangle 3 Drawing
+        // Rectangle 3 Drawing
         [NSGraphicsContext saveGraphicsState];
         CGContextTranslateCTM(context, NSMinX(cellFrame) + 9, NSMaxY(cellFrame) - 11);
         CGContextRotateCTM(context, -45 * M_PI / 180);
@@ -97,7 +100,7 @@
     }
     
     
-    //// chevronDownArrow
+    // chevronDownArrow
     {
         [NSGraphicsContext saveGraphicsState];
         CGContextTranslateCTM(context, NSMinX(cellFrame) + 7, NSMaxY(cellFrame) - 21.5);
@@ -105,7 +108,7 @@
         
         
         
-        //// Rectangle 4 Drawing
+        // Rectangle 4 Drawing
         [NSGraphicsContext saveGraphicsState];
         CGContextTranslateCTM(context, -2, 0);
         CGContextRotateCTM(context, 45 * M_PI / 180);
@@ -117,7 +120,7 @@
         [NSGraphicsContext restoreGraphicsState];
         
         
-        //// Rectangle 5 Drawing
+        // Rectangle 5 Drawing
         [NSGraphicsContext saveGraphicsState];
         CGContextTranslateCTM(context, 2, 0);
         CGContextRotateCTM(context, -45 * M_PI / 180);
@@ -134,10 +137,9 @@
     }
     
     
-    //// Rectangle 6 Drawing
+    // Rectangle 6 Drawing
     NSBezierPath* rectangle6Path = [NSBezierPath bezierPathWithRect: NSMakeRect(.5, ((cellFrame.size.height / 2) - 3), (cellFrame.size.width - 5), 1)];
     [NSGraphicsContext saveGraphicsState];
-//    [DE_Drawing.textBoxEdgeHighligh set];
     [DE_Drawing.textBoxStrokeColor setFill];
     [rectangle6Path fill];
     [NSGraphicsContext restoreGraphicsState];

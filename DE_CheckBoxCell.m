@@ -31,10 +31,10 @@
             [[NSColor redColor] setFill];
         } else {
             
-            //// General Declarations
+            // General Declarations
             CGContextRef context = (CGContextRef)NSGraphicsContext.currentContext.graphicsPort;
             
-            //// Rectangle Drawing
+            // Checkmark Drawing
             [NSGraphicsContext saveGraphicsState];
             CGContextTranslateCTM(context, frame.origin.x + 6, frame.origin.y + 10);
             CGContextRotateCTM(context, -135 * M_PI / 180);
@@ -45,7 +45,7 @@
             
             [NSGraphicsContext restoreGraphicsState];
             
-            //// Rectangle 2 Drawing
+            // Checkmark 2 Drawing
             [NSGraphicsContext saveGraphicsState];
             CGContextTranslateCTM(context, frame.origin.x + 11.05, frame.origin.y + 8.21);
             CGContextRotateCTM(context, 34.68 * M_PI / 180);
@@ -76,38 +76,4 @@
     [NSGraphicsContext restoreGraphicsState];
     return titleRect;
 }
-
-//+ (Class)cellClass
-//{
-//    return [DE_CheckBoxCell class];
-//}
-//
-//- (id)initWithCoder:(NSCoder *)aDecoder
-//{
-//    //    return [super initWithCoder:aDecoder];
-//    if (![aDecoder isKindOfClass:[NSKeyedUnarchiver class]])
-//        return [super initWithCoder:aDecoder];
-//    
-//    NSKeyedUnarchiver *unarchiver = (NSKeyedUnarchiver *)aDecoder;
-//    
-//    Class oldClass = [[self superclass] cellClass];
-//    Class newClass = [[self class] cellClass];
-//    
-//    
-//    [unarchiver setClass:newClass forClassName:NSStringFromClass(oldClass)];
-//    self = [super initWithCoder:aDecoder];
-//    
-//    [unarchiver setClass:oldClass forClassName:NSStringFromClass(oldClass)];
-//    
-//    /*= set title color to white =*/
-//    NSMutableAttributedString *attrTitle = [[NSMutableAttributedString alloc] initWithAttributedString:[self attributedTitle]];
-//    NSUInteger len = [attrTitle length];
-//    NSRange range = NSMakeRange(0, len);
-//    [attrTitle addAttribute:NSForegroundColorAttributeName value:[NSColor whiteColor] range:range];
-//    [attrTitle fixAttributesInRange:range];
-//    [self setAttributedTitle:attrTitle];
-//    
-//    return self;
-//}
-
 @end

@@ -16,26 +16,29 @@
     
     [super drawImageWithFrame:cellFrame inView:controlView];
     
+    // TODO:Move this over to DE_Drawing
+    
+    // Moving origin for @1x drawing
     cellFrame.origin.x = .5;
     cellFrame.origin.y = .5;
     
     //// General Declarations
     CGContextRef context = (CGContextRef)NSGraphicsContext.currentContext.graphicsPort;
     
-    //// Color Declarations
+    // Color Declarations
     NSColor* sliderThumbGradientColor = [NSColor colorWithCalibratedRed: 0.216 green: 0.216 blue: 0.216 alpha: 1];
     NSColor* sliderThumbGradientColor2 = [NSColor colorWithCalibratedRed: 0.286 green: 0.286 blue: 0.286 alpha: 1];
     NSColor* color = [NSColor colorWithCalibratedRed: 0 green: 0 blue: 0 alpha: 1];
     NSColor* popUpButtonChevronButtonColor = [NSColor colorWithCalibratedRed: 0.482 green: 0.482 blue: 0.482 alpha: 1];
     NSColor* popUpButtonChevronButtonColor2 = [NSColor colorWithCalibratedRed: 0.168 green: 0.168 blue: 0.168 alpha: 1];
     
-    //// Gradient Declarations
+    // Gradient Declarations
     NSGradient* sliderThumbGradient = [NSGradient.alloc initWithStartingColor: sliderThumbGradientColor2 endingColor: sliderThumbGradientColor];
     NSGradient* popUpButtonChevronButton = [NSGradient.alloc initWithColorsAndLocations:
                                             popUpButtonChevronButtonColor2, 0.31,
                                             popUpButtonChevronButtonColor, 1.0, nil];
     
-    //// Rectangle Drawing
+    // Background Rectangle Drawing
     NSBezierPath* rectanglePath = [NSBezierPath bezierPathWithRoundedRect: NSMakeRect(NSMinX(cellFrame), NSMinY(cellFrame), (cellFrame.size.width - 3), (cellFrame.size.height - 3)) xRadius: 4 yRadius: 4];
     [NSGraphicsContext saveGraphicsState];
     [DE_Drawing.textBoxEdgeHighligh set];
@@ -43,7 +46,7 @@
     [sliderThumbGradient drawInBezierPath: rectanglePath angle: 90];
     CGContextEndTransparencyLayer(context);
     
-    ////// Rectangle Inner Shadow
+    // Background Rectangle Inner Shadow
     [NSGraphicsContext saveGraphicsState];
     NSRectClip(rectanglePath.bounds);
     CGContextSetShadowWithColor(context, CGSizeZero, 0, NULL);
@@ -75,7 +78,7 @@
     [rectanglePath stroke];
     
     
-    //// Rectangle 2 Drawing
+    // Popup Button Drawing
     CGFloat rectangle2CornerRadius = 4;
     NSRect rectangle2Rect = NSMakeRect(NSMinX(cellFrame) + 77.5, NSMinY(cellFrame), 20, (cellFrame.size.height - 3));
     NSRect rectangle2InnerRect = NSInsetRect(rectangle2Rect, rectangle2CornerRadius, rectangle2CornerRadius);
@@ -90,20 +93,7 @@
     [rectangle2Path setLineWidth: 1];
     [rectangle2Path stroke];
     
-    
-//    //// Bezier Drawing
-//    NSBezierPath* bezierPath = NSBezierPath.bezierPath;
-//    [bezierPath moveToPoint: NSMakePoint(NSMinX(cellFrame) + 60.5, NSMaxY(cellFrame) - 15.5)];
-//    [bezierPath lineToPoint: NSMakePoint(100.5, 11.5)];
-//    [bezierPath lineToPoint: NSMakePoint(NSMinX(cellFrame) + 60.5, NSMaxY(cellFrame) - 15.5)];
-//    [bezierPath closePath];
-//    [NSColor.grayColor setFill];
-//    [bezierPath fill];
-//    [color setStroke];
-//    [bezierPath setLineWidth: 1];
-//    [bezierPath stroke];
-    
-    //// Bezier Drawing
+    // Popup Button Divider line Drawing
     NSBezierPath* bezierPath = NSBezierPath.bezierPath;
     [bezierPath moveToPoint: NSMakePoint(NSMinX(cellFrame) + 77.5, NSMaxY(cellFrame) - 14.5)];
     [bezierPath lineToPoint: NSMakePoint(NSMinX(cellFrame) + 97.5, NSMaxY(cellFrame) - 14.5)];
@@ -119,9 +109,11 @@
 
 - (NSRect)drawTitle:(NSAttributedString *)title withFrame:(NSRect)frame inView:(NSView *)controlView
 {
-    //    Save Graphics Context
+    // Save Graphics Context
     [NSGraphicsContext saveGraphicsState];
     
+    // Offsetting frame so that the text draws in an agreeable place
+    // TODO: Fix this so that the text is in the correct position
     frame.origin.x = 6;
     
     // Draw title with whiteColor

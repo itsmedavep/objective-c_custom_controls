@@ -15,64 +15,21 @@
         withFrame:(NSRect)frame
            inView:(NSView *)controlView {
     
-    //// General Declarations
+    // General Declarations
     CGContextRef context = (CGContextRef)NSGraphicsContext.currentContext.graphicsPort;
     
-    
-    
-    
-//        //// Oval Drawing
-//        NSBezierPath* ovalPath = [NSBezierPath bezierPathWithOvalInRect: NSMakeRect((frame.origin.x), (frame.origin.y), (frame.size.width), (frame.size.height))];
-//        [DE_Drawing.textBoxFillColor setFill];
-//        [ovalPath fill];
-//
-//
-//        //// radioButton Drawing
-//        NSBezierPath* radioButtonPath = [NSBezierPath bezierPathWithOvalInRect: NSMakeRect(((frame.origin.x) + 5.5), ((frame.origin.y) + 5.5), ((frame.size.width) * .4), ((frame.size.height) * .4))];
-//        [DE_Drawing.sliderThumbMiddleColor setFill];
-//        [radioButtonPath fill];
-    
-    // Drawing
-//    if(![self isEnabled]) {
-//        
-//        //// Oval Drawing
-//        NSBezierPath* ovalPath = [NSBezierPath bezierPathWithOvalInRect: NSMakeRect((frame.origin.x), (frame.origin.y), (frame.size.width), (frame.size.height))];
-//        [DE_Drawing.textBoxFillColor setFill];
-//        [ovalPath fill];
-//        
-//        
-//        //// radioButton Drawing
-//        NSBezierPath* radioButtonPath = [NSBezierPath bezierPathWithOvalInRect: NSMakeRect(((frame.origin.x) + 5.5), ((frame.origin.y) + 5.5), ((frame.size.width) * .4), ((frame.size.height) * .4))];
-//        [DE_Drawing.sliderThumbMiddleColor setFill];
-//        [radioButtonPath fill];
-//
-//        
-//    } else {
-//        
-//        //// Oval Drawing
-//        NSBezierPath* ovalPath = [NSBezierPath bezierPathWithOvalInRect: NSMakeRect((frame.origin.x), (frame.origin.y), (frame.size.width), (frame.size.height))];
-//        [DE_Drawing.textBoxFillColor setFill];
-//        [ovalPath fill];
-//        
-//        
-//        //// radioButton Drawing
-//        NSBezierPath* radioButtonPath = [NSBezierPath bezierPathWithOvalInRect: NSMakeRect(((frame.origin.x) + 5.5), ((frame.origin.y) + 5.5), ((frame.size.width) * .4), ((frame.size.height) * .4))];
-//        [DE_Drawing.sliderThumbMiddleColor setFill];
-//        [radioButtonPath fill];
-//
-//    }
     // Now drawing selection
     if ([self intValue]) {
         
-        //// Oval Drawing
+        [NSGraphicsContext saveGraphicsState];
+        
+        // Oval Drawing
         NSBezierPath* ovalPath = [NSBezierPath bezierPathWithOvalInRect: NSMakeRect((frame.origin.x + 1.5), (frame.origin.y + 1.5), (frame.size.width- 2), (frame.size.height - 2))];
         [DE_Drawing.textBoxFillColor setFill];
         [DE_Drawing.radioButtonEdgeHighlight set];
         [ovalPath fill];
             
-            ////// Oval Inner Shadow
-            [NSGraphicsContext saveGraphicsState];
-//            NSRectClip(ovalPath.bounds);
+            // Oval Inner Shadow
             CGContextSetShadowWithColor(context, CGSizeZero, 0, NULL);
             
             CGContextSetAlpha(context, DE_Drawing.textBoxInnerShadow.shadowColor.alphaComponent);
@@ -99,22 +56,23 @@
             [ovalPath setLineWidth: 1];
             [ovalPath stroke];
         
-        //// radioButton Drawing
+        // radioButton Drawing
         NSBezierPath* radioButtonPath = [NSBezierPath bezierPathWithOvalInRect: NSMakeRect(((frame.origin.x) + 6.5), ((frame.origin.y) + 6.5), ((frame.size.width) * .33), ((frame.size.height) * .33))];
         [DE_Drawing.sliderThumbMiddleColor setFill];
         [radioButtonPath fill];
 
         } else {
             
-            //// Oval Drawing
+            
+            [NSGraphicsContext saveGraphicsState];
+            
+            // Oval Drawing
             NSBezierPath* ovalPath = [NSBezierPath bezierPathWithOvalInRect: NSMakeRect((frame.origin.x + 1.5), (frame.origin.y + 1.5), (frame.size.width - 2), (frame.size.height - 2))];
             [DE_Drawing.textBoxFillColor setFill];
             [DE_Drawing.radioButtonEdgeHighlight set];
             [ovalPath fill];
             
-            ////// Oval Inner Shadow
-            [NSGraphicsContext saveGraphicsState];
-//            NSRectClip(ovalPath.bounds);
+            // Oval Inner Shadow
             CGContextSetShadowWithColor(context, CGSizeZero, 0, NULL);
             
             CGContextSetAlpha(context, DE_Drawing.textBoxInnerShadow.shadowColor.alphaComponent);
@@ -140,20 +98,15 @@
             [DE_Drawing.textBoxStrokeColor setStroke];
             [ovalPath setLineWidth: 1];
             [ovalPath stroke];
-            
-//            //// radioButton Drawing
-//            NSBezierPath* radioButtonPath = [NSBezierPath bezierPathWithOvalInRect: NSMakeRect(((frame.origin.x) + 5.5), ((frame.origin.y) + 5.5), ((frame.size.width) * .4), ((frame.size.height) * .4))];
-//            [DE_Drawing.textBoxFillColor setFill];
-//            [radioButtonPath fill];
-            
         }
 }
 
 - (NSRect)drawTitle:(NSAttributedString *)title withFrame:(NSRect)frame inView:(NSView *)controlView
 {
-//    Save Graphics Context
+    // Save Graphics Context
     [NSGraphicsContext saveGraphicsState];
     
+    // Moving over origin of text drawing to keep it positioned away from edge of frame
     frame.origin.x = 22;
     
     // Draw title with whiteColor

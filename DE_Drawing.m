@@ -5,8 +5,8 @@
 //  Created by David Palmer on 6/20/15.
 //  Copyright (c) 2015 itsmedavep.com. All rights reserved.
 //
-//
-//
+//  Drawing contorl backgrounds.  The intention is to include this class to draw all controls for you.
+//  It isnt currently that way however.  Lots of code needs to move into here.
 
 #import "DE_Drawing.h"
 
@@ -408,18 +408,20 @@ static NSImage* _imageOfTextBoxBackgroundCanvasWithTextBoxCornerRadius = nil;
 
 + (void)drawDrawGroupBoxWithFrame: (NSRect)frame textBoxCornerRadius: (CGFloat)textBoxCornerRadius
 {
-    //// General Declarations
+    // General Declarations
     CGContextRef context = (CGContextRef)NSGraphicsContext.currentContext.graphicsPort;
     
-    //// Rectangle Drawing
+    
+    [NSGraphicsContext saveGraphicsState];
+    
+    // Rectangle Drawing
     NSBezierPath* rectanglePath = [NSBezierPath bezierPathWithRoundedRect: NSMakeRect(NSMinX(frame) - 5.5, NSMinY(frame) + NSHeight(frame), frame.size.width, frame.size.height) xRadius: textBoxCornerRadius yRadius: textBoxCornerRadius];
     [NSGraphicsContext saveGraphicsState];
     [DE_Drawing.textBoxEdgeHighligh set];
     [DE_Drawing.textBoxFillColor setFill];
     [rectanglePath fill];
     
-    ////// Rectangle Inner Shadow
-    [NSGraphicsContext saveGraphicsState];
+    // Rectangle Inner Shadow
     NSRectClip(rectanglePath.bounds);
     CGContextSetShadowWithColor(context, CGSizeZero, 0, NULL);
     
@@ -450,19 +452,20 @@ static NSImage* _imageOfTextBoxBackgroundCanvasWithTextBoxCornerRadius = nil;
     [rectanglePath stroke];
 }
 
+// Not used
 + (void)drawStepperCellWithStepperRightSideCornerRadius: (CGFloat)stepperRightSideCornerRadius
 {
-    //// General Declarations
+    // General Declarations
     CGContextRef context = (CGContextRef)NSGraphicsContext.currentContext.graphicsPort;
     
-    //// Color Declarations
+    // Color Declarations
     NSColor* sliderThumbGradientColor = [NSColor colorWithCalibratedRed: 0.216 green: 0.216 blue: 0.216 alpha: 1];
     NSColor* sliderThumbGradientColor2 = [NSColor colorWithCalibratedRed: 0.286 green: 0.286 blue: 0.286 alpha: 1];
     
-    //// Gradient Declarations
+    // Gradient Declarations
     NSGradient* sliderThumbGradient = [NSGradient.alloc initWithStartingColor: sliderThumbGradientColor2 endingColor: sliderThumbGradientColor];
     
-    //// Rectangle Drawing
+    // Rectangle Drawing
     CGFloat rectangleCornerRadius = stepperRightSideCornerRadius;
     NSRect rectangleRect = NSMakeRect(3, 4, 17, 41);
     NSRect rectangleInnerRect = NSInsetRect(rectangleRect, rectangleCornerRadius, rectangleCornerRadius);
@@ -474,7 +477,7 @@ static NSImage* _imageOfTextBoxBackgroundCanvasWithTextBoxCornerRadius = nil;
     [rectanglePath closePath];
     [sliderThumbGradient drawInBezierPath: rectanglePath angle: -90];
     
-    ////// Rectangle Inner Shadow
+    // Rectangle Inner Shadow
     [NSGraphicsContext saveGraphicsState];
     NSRectClip(rectanglePath.bounds);
     CGContextSetShadowWithColor(context, CGSizeZero, 0, NULL);
@@ -504,9 +507,9 @@ static NSImage* _imageOfTextBoxBackgroundCanvasWithTextBoxCornerRadius = nil;
     [rectanglePath stroke];
     
     
-    //// chevronUpArrow
+    // chevronUpArrow
     {
-        //// Rectangle 2 Drawing
+        // Rectangle 2 Drawing
         [NSGraphicsContext saveGraphicsState];
         CGContextTranslateCTM(context, 9.5, 34.5);
         CGContextRotateCTM(context, 45 * M_PI / 180);
@@ -515,7 +518,7 @@ static NSImage* _imageOfTextBoxBackgroundCanvasWithTextBoxCornerRadius = nil;
         [NSColor.whiteColor setFill];
         [rectangle2Path fill];
         
-        ////// Rectangle 2 Inner Shadow
+        // Rectangle 2 Inner Shadow
         [NSGraphicsContext saveGraphicsState];
         NSRectClip(rectangle2Path.bounds);
         CGContextSetShadowWithColor(context, CGSizeZero, 0, NULL);
@@ -544,7 +547,7 @@ static NSImage* _imageOfTextBoxBackgroundCanvasWithTextBoxCornerRadius = nil;
         [NSGraphicsContext restoreGraphicsState];
         
         
-        //// Rectangle 3 Drawing
+        // Rectangle 3 Drawing
         [NSGraphicsContext saveGraphicsState];
         CGContextTranslateCTM(context, 13.5, 34.5);
         CGContextRotateCTM(context, -45 * M_PI / 180);
@@ -553,7 +556,7 @@ static NSImage* _imageOfTextBoxBackgroundCanvasWithTextBoxCornerRadius = nil;
         [NSColor.whiteColor setFill];
         [rectangle3Path fill];
         
-        ////// Rectangle 3 Inner Shadow
+        // Rectangle 3 Inner Shadow
         [NSGraphicsContext saveGraphicsState];
         NSRectClip(rectangle3Path.bounds);
         CGContextSetShadowWithColor(context, CGSizeZero, 0, NULL);
@@ -583,7 +586,7 @@ static NSImage* _imageOfTextBoxBackgroundCanvasWithTextBoxCornerRadius = nil;
     }
     
     
-    //// chevronDownArrow
+    // chevronDownArrow
     {
         [NSGraphicsContext saveGraphicsState];
         CGContextTranslateCTM(context, 11.5, 13.5);
@@ -591,7 +594,7 @@ static NSImage* _imageOfTextBoxBackgroundCanvasWithTextBoxCornerRadius = nil;
         
         
         
-        //// Rectangle 4 Drawing
+        // Rectangle 4 Drawing
         [NSGraphicsContext saveGraphicsState];
         CGContextTranslateCTM(context, -2, 0);
         CGContextRotateCTM(context, 45 * M_PI / 180);
@@ -600,7 +603,7 @@ static NSImage* _imageOfTextBoxBackgroundCanvasWithTextBoxCornerRadius = nil;
         [NSColor.whiteColor setFill];
         [rectangle4Path fill];
         
-        ////// Rectangle 4 Inner Shadow
+        // Rectangle 4 Inner Shadow
         [NSGraphicsContext saveGraphicsState];
         NSRectClip(rectangle4Path.bounds);
         CGContextSetShadowWithColor(context, CGSizeZero, 0, NULL);
@@ -629,7 +632,7 @@ static NSImage* _imageOfTextBoxBackgroundCanvasWithTextBoxCornerRadius = nil;
         [NSGraphicsContext restoreGraphicsState];
         
         
-        //// Rectangle 5 Drawing
+        // Rectangle 5 Drawing
         [NSGraphicsContext saveGraphicsState];
         CGContextTranslateCTM(context, 2, 0);
         CGContextRotateCTM(context, -45 * M_PI / 180);
@@ -638,7 +641,7 @@ static NSImage* _imageOfTextBoxBackgroundCanvasWithTextBoxCornerRadius = nil;
         [NSColor.whiteColor setFill];
         [rectangle5Path fill];
         
-        ////// Rectangle 5 Inner Shadow
+        // Rectangle 5 Inner Shadow
         [NSGraphicsContext saveGraphicsState];
         NSRectClip(rectangle5Path.bounds);
         CGContextSetShadowWithColor(context, CGSizeZero, 0, NULL);
@@ -672,7 +675,7 @@ static NSImage* _imageOfTextBoxBackgroundCanvasWithTextBoxCornerRadius = nil;
     }
     
     
-    //// Rectangle 6 Drawing
+    // Rectangle 6 Drawing
     NSBezierPath* rectangle6Path = [NSBezierPath bezierPathWithRect: NSMakeRect(3, 24, 17, 1)];
     [NSGraphicsContext saveGraphicsState];
     [DE_Drawing.textBoxEdgeHighligh set];
@@ -682,6 +685,8 @@ static NSImage* _imageOfTextBoxBackgroundCanvasWithTextBoxCornerRadius = nil;
 }
 
 #pragma mark Generated Images
+
+// TODO: add more NSimage stuff
 
 + (NSImage*)imageOfStylingCanvas
 {

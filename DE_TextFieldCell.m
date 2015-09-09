@@ -15,15 +15,19 @@
 
 - (void) awakeFromNib {
     
+    // Was thinking about setting up stuff when in a .xib like highlightcolor
     
 }
 
 -(NSColor *)highlightColorWithFrame:(NSRect)cellFrame inView:(NSView *)controlView {
+    
+    // Was thinking about drawing some custom highlight colors
     return nil;
 }
 
 - (void)drawWithFrame:(NSRect)cellFrame inView:(NSView *)controlView {
     
+    // Draw textBox background
     
     [DE_Drawing drawTextBoxBackgroundCanvasWithTextBoxFrame:self.controlView.bounds textBoxCornerRadius:2 textBoxStrokeWidth:1];
     
@@ -31,10 +35,6 @@
         [self setBackgroundColor:[NSColor darkGrayColor]];
         [self drawInteriorWithFrame:cellFrame inView:controlView];
     }
-    
-//    if (self.isHighlighted) {
-//        [self setBackgroundColor:[DE_Drawing textBoxFillColor]];
-//    }
     
     if (self.isEnabled) {
         [self setBackgroundColor:[DE_Drawing textBoxFillColor]];
@@ -52,12 +52,15 @@
 - (NSRect)titleRectForBounds:(NSRect)theRect {
     NSRect titleFrame = [super titleRectForBounds:theRect];
     
+    // Moving over the text origin to get it away from the edege of the frame
     titleFrame.origin.x = 4;
     
     NSAttributedString *attrString = self.attributedStringValue;
     NSRect textRect = [attrString boundingRectWithSize: titleFrame.size
                                                options: NSStringDrawingTruncatesLastVisibleLine | NSStringDrawingUsesLineFragmentOrigin ];
     if (textRect.size.height < titleFrame.size.height) {
+        
+        // Center Stuff
         titleFrame.origin.y = theRect.origin.y + (theRect.size.height - textRect.size.height) / 2.0;
         titleFrame.size.height = textRect.size.height;
     }
