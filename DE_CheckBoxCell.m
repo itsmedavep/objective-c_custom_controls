@@ -60,4 +60,54 @@
     }
 }
 
+- (NSRect)drawTitle:(NSAttributedString *)title withFrame:(NSRect)frame inView:(NSView *)controlView
+{
+    //    Save Graphics Context
+    [NSGraphicsContext saveGraphicsState];
+    
+    // Draw title with whiteColor
+    NSMutableAttributedString *attrString = [title mutableCopy];
+    [attrString beginEditing];
+    [attrString addAttribute:NSForegroundColorAttributeName value:[NSColor whiteColor] range:NSMakeRange(0, [[self title] length])];
+    [attrString endEditing];
+    NSRect titleRect = [super drawTitle:attrString withFrame:frame inView:controlView];
+    
+    // Restore graphics state
+    [NSGraphicsContext restoreGraphicsState];
+    return titleRect;
+}
+
+//+ (Class)cellClass
+//{
+//    return [DE_CheckBoxCell class];
+//}
+//
+//- (id)initWithCoder:(NSCoder *)aDecoder
+//{
+//    //    return [super initWithCoder:aDecoder];
+//    if (![aDecoder isKindOfClass:[NSKeyedUnarchiver class]])
+//        return [super initWithCoder:aDecoder];
+//    
+//    NSKeyedUnarchiver *unarchiver = (NSKeyedUnarchiver *)aDecoder;
+//    
+//    Class oldClass = [[self superclass] cellClass];
+//    Class newClass = [[self class] cellClass];
+//    
+//    
+//    [unarchiver setClass:newClass forClassName:NSStringFromClass(oldClass)];
+//    self = [super initWithCoder:aDecoder];
+//    
+//    [unarchiver setClass:oldClass forClassName:NSStringFromClass(oldClass)];
+//    
+//    /*= set title color to white =*/
+//    NSMutableAttributedString *attrTitle = [[NSMutableAttributedString alloc] initWithAttributedString:[self attributedTitle]];
+//    NSUInteger len = [attrTitle length];
+//    NSRange range = NSMakeRange(0, len);
+//    [attrTitle addAttribute:NSForegroundColorAttributeName value:[NSColor whiteColor] range:range];
+//    [attrTitle fixAttributesInRange:range];
+//    [self setAttributedTitle:attrTitle];
+//    
+//    return self;
+//}
+
 @end

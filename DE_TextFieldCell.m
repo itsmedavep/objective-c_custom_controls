@@ -32,9 +32,9 @@
         [self drawInteriorWithFrame:cellFrame inView:controlView];
     }
     
-    if (self.isHighlighted) {
-        [self setBackgroundColor:[DE_Drawing textBoxFillColor]];
-    }
+//    if (self.isHighlighted) {
+//        [self setBackgroundColor:[DE_Drawing textBoxFillColor]];
+//    }
     
     if (self.isEnabled) {
         [self setBackgroundColor:[DE_Drawing textBoxFillColor]];
@@ -51,6 +51,8 @@
 
 - (NSRect)titleRectForBounds:(NSRect)theRect {
     NSRect titleFrame = [super titleRectForBounds:theRect];
+    
+    titleFrame.origin.x = 4;
     
     NSAttributedString *attrString = self.attributedStringValue;
     NSRect textRect = [attrString boundingRectWithSize: titleFrame.size

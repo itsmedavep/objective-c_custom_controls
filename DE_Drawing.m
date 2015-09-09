@@ -47,6 +47,8 @@ static NSShadow* _upperShadowEdge = nil;
 static NSShadow* _textBoxEdgeHighligh = nil;
 static NSShadow* _textBoxInnerShadow = nil;
 
+static NSShadow* _radioButtonEdgeHighlight = nil;
+
 static NSImage* _imageOfStylingCanvas = nil;
 static NSImage* _imageOfTextBoxBackgroundCanvasWithTextBoxCornerRadius = nil;
 
@@ -107,6 +109,11 @@ static NSImage* _imageOfTextBoxBackgroundCanvasWithTextBoxCornerRadius = nil;
     [_textBoxInnerShadow setShadowOffset: NSMakeSize(0.1, -1.1)];
     [_textBoxInnerShadow setShadowBlurRadius: 5];
     
+    _radioButtonEdgeHighlight = NSShadow.alloc.init;
+    [_radioButtonEdgeHighlight setShadowColor: [DE_Drawing.textBoxOuterShadowColor colorWithAlphaComponent: 0.25]];
+    [_radioButtonEdgeHighlight setShadowOffset: NSMakeSize(0, -.5)];
+    [_radioButtonEdgeHighlight setShadowBlurRadius: 1];
+    
     
     
 }
@@ -147,6 +154,7 @@ static NSImage* _imageOfTextBoxBackgroundCanvasWithTextBoxCornerRadius = nil;
 + (NSShadow*)upperShadowEdge { return _upperShadowEdge; }
 + (NSShadow*)textBoxEdgeHighligh { return _textBoxEdgeHighligh; }
 + (NSShadow*)textBoxInnerShadow { return _textBoxInnerShadow; }
++ (NSShadow*)radioButtonEdgeHighlight {return _radioButtonEdgeHighlight; }
 
 #pragma mark Drawing Methods
 

@@ -711,22 +711,18 @@
                     <customView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="l11-H4-B0B" customClass="DE_Background">
                         <rect key="frame" x="0.0" y="0.0" width="640" height="480"/>
                         <subviews>
-                            <stepper horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="d3o-19-faX">
-                                <rect key="frame" x="44" y="170" width="19" height="27"/>
-                                <stepperCell key="cell" continuous="YES" alignment="left" maxValue="100" id="HE8-oJ-ih2" customClass="DE_StepperCell"/>
-                            </stepper>
                             <slider verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="j5s-K8-VTh">
                                 <rect key="frame" x="45" y="402" width="144" height="20"/>
                                 <sliderCell key="cell" state="on" alignment="left" maxValue="100" doubleValue="30.604166666666664" tickMarkPosition="above" sliderType="linear" id="LAG-j7-5OM" customClass="DE_SliderCell"/>
                             </slider>
                             <popUpButton verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pdb-6l-MHK">
                                 <rect key="frame" x="45" y="325" width="100" height="26"/>
-                                <popUpButtonCell key="cell" type="push" title="Item 1" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="VUM-yR-7Ee" id="0iw-N5-RHC">
+                                <popUpButtonCell key="cell" type="push" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" id="0iw-N5-RHC" customClass="DE_PopUpButtonCell">
                                     <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="menu"/>
                                     <menu key="menu" id="1Fr-ux-BDR">
                                         <items>
-                                            <menuItem title="Item 1" state="on" id="VUM-yR-7Ee"/>
+                                            <menuItem title="Item 1" id="VUM-yR-7Ee"/>
                                             <menuItem title="Item 2" id="wlr-V9-0S6"/>
                                             <menuItem title="Item 3" id="9re-ZJ-nO8"/>
                                         </items>
@@ -734,29 +730,29 @@
                                 </popUpButtonCell>
                             </popUpButton>
                             <matrix verticalHuggingPriority="750" fixedFrame="YES" allowsEmptySelection="NO" autorecalculatesCellSize="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4Dt-eE-OSf">
-                                <rect key="frame" x="47" y="198" width="58" height="82"/>
+                                <rect key="frame" x="47" y="198" width="78" height="82"/>
                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                                <size key="cellSize" width="58" height="18"/>
+                                <size key="cellSize" width="70" height="18"/>
                                 <size key="intercellSpacing" width="4" height="2"/>
-                                <buttonCell key="prototype" type="radio" title="Radio" imagePosition="left" alignment="left" inset="2" id="58F-hO-dhB">
+                                <buttonCell key="prototype" type="radio" title="Radio" imagePosition="left" alignment="left" inset="2" id="58F-hO-dhB" customClass="DE_MatrixCell">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
                                 <cells>
                                     <column>
-                                        <buttonCell type="radio" title="Radio" imagePosition="left" alignment="left" state="on" tag="1" inset="2" id="GFI-S5-bhC">
+                                        <buttonCell type="radio" title="Radio 1" imagePosition="left" alignment="left" state="on" tag="1" inset="2" id="GFI-S5-bhC" customClass="DE_MatrixCell">
                                             <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                             <font key="font" metaFont="system"/>
                                         </buttonCell>
-                                        <buttonCell type="radio" title="Radio" imagePosition="left" alignment="left" inset="2" id="3fs-Tg-qQj">
+                                        <buttonCell type="radio" title="Radio 2" imagePosition="left" alignment="left" inset="2" id="3fs-Tg-qQj" customClass="DE_MatrixCell">
                                             <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                             <font key="font" metaFont="system"/>
                                         </buttonCell>
-                                        <buttonCell type="radio" title="Radio" imagePosition="left" alignment="left" inset="2" id="P5F-PI-3U2">
+                                        <buttonCell type="radio" title="Radio 3" imagePosition="left" alignment="left" inset="2" id="P5F-PI-3U2" customClass="DE_MatrixCell">
                                             <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                             <font key="font" metaFont="system"/>
                                         </buttonCell>
-                                        <buttonCell type="radio" title="Radio" imagePosition="left" alignment="left" inset="2" id="Wlp-bH-Vxf">
+                                        <buttonCell type="radio" title="Radio 4" imagePosition="left" alignment="left" inset="2" id="Wlp-bH-Vxf" customClass="DE_MatrixCell">
                                             <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                             <font key="font" metaFont="system"/>
                                         </buttonCell>
@@ -785,14 +781,14 @@
                                 </textFieldCell>
                             </textField>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4bx-l2-eJ3">
-                                <rect key="frame" x="151" y="441" width="87" height="17"/>
+                                <rect key="frame" x="148" y="440" width="87" height="17"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Colored Text" id="Ctg-4J-USn">
                                     <font key="font" metaFont="system"/>
-                                    <color key="textColor" white="1" alpha="0.84999999999999998" colorSpace="calibratedWhite"/>
+                                    <color key="textColor" red="0.93725490196078431" green="0.52156862745098043" blue="0.12549019607843137" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
-                            <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1Cm-dS-90z" customClass="DE_CheckBox">
+                            <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1Cm-dS-90z">
                                 <rect key="frame" x="45" y="350" width="151" height="45"/>
                                 <buttonCell key="cell" type="check" title="Custom Label Color" bezelStyle="regularSquare" imagePosition="left" alignment="center" state="on" inset="2" id="OSg-L3-3ZW" customClass="DE_CheckBoxCell">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -803,29 +799,25 @@
                                 <rect key="frame" x="260" y="366" width="20" height="96"/>
                                 <sliderCell key="cell" state="on" alignment="left" maxValue="100" doubleValue="79.885416666666657" tickMarkPosition="right" sliderType="linear" id="Ex4-iR-i0M" customClass="DE_SliderCell"/>
                             </slider>
-                            <box autoresizesSubviews="NO" fixedFrame="YES" title="Group Box" borderType="line" titlePosition="atBottom" translatesAutoresizingMaskIntoConstraints="NO" id="Pe3-y4-nWJ" customClass="DE_Box">
+                            <box autoresizesSubviews="NO" fixedFrame="YES" title="Group Box" borderType="line" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="Pe3-y4-nWJ" customClass="DE_Box">
                                 <rect key="frame" x="299" y="333" width="294" height="129"/>
                                 <view key="contentView">
-                                    <rect key="frame" x="1" y="15" width="292" height="113"/>
+                                    <rect key="frame" x="1" y="1" width="292" height="127"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 </view>
                                 <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
                                 <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             </box>
+                            <stepper horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="d3o-19-faX">
+                                <rect key="frame" x="147" y="325" width="19" height="27"/>
+                                <stepperCell key="cell" continuous="YES" alignment="left" maxValue="100" id="HE8-oJ-ih2" customClass="DE_StepperCell"/>
+                            </stepper>
                         </subviews>
                     </customView>
                 </subviews>
             </view>
             <point key="canvasLocation" x="144" y="308"/>
         </window>
-        <collectionViewItem id="sgJ-Ir-oSg">
-            <connections>
-                <outlet property="view" destination="Sec-Of-IS6" id="QTH-71-rBc"/>
-            </connections>
-        </collectionViewItem>
-        <view id="Sec-Of-IS6">
-            <rect key="frame" x="0.0" y="0.0" width="100" height="100"/>
-            <autoresizingMask key="autoresizingMask"/>
-        </view>
+        <collectionViewItem id="sgJ-Ir-oSg"/>
     </objects>
 </document>

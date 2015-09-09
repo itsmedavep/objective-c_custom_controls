@@ -14,7 +14,7 @@
 {
     _drawsTitle = YES;
     [[self titleCell] setLineBreakMode:NSLineBreakByTruncatingTail];
-    [[self titleCell] setEditable:YES];
+//    [[self titleCell] setEditable:YES];
     
     [self setTitleColor:[NSColor whiteColor]];
 //    [self setTitleFont:[NSFont boldSystemFontOfSize:[NSFont systemFontSizeForControlSize:NSSmallControlSize]]];

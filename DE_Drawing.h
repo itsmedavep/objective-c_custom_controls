@@ -39,6 +39,7 @@
 + (NSShadow*)upperShadowEdge;
 + (NSShadow*)textBoxEdgeHighligh;
 + (NSShadow*)textBoxInnerShadow;
++ (NSShadow*)radioButtonEdgeHighlight;
 
 // Drawing Methods
 + (void)drawStylingCanvas;

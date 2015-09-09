@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		24160C351B534D0A0096F4E8 /* DE_SliderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 24160C341B534D0A0096F4E8 /* DE_SliderCell.m */; };
+		2421328C1B9C7FC60034739E /* DE_Matrix.m in Sources */ = {isa = PBXBuildFile; fileRef = 2421328B1B9C7FC60034739E /* DE_Matrix.m */; };
+		2421328F1B9C80B90034739E /* DE_MatrixCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2421328E1B9C80B90034739E /* DE_MatrixCell.m */; };
 		24300E241B9A7A7100347A22 /* DE_Box.m in Sources */ = {isa = PBXBuildFile; fileRef = 24300E231B9A7A7100347A22 /* DE_Box.m */; };
 		2436E4621B7D0E81004C5B28 /* DE_CheckBoxCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2436E4611B7D0E81004C5B28 /* DE_CheckBoxCell.m */; };
 		2444438E1B35DDDC00E725A9 /* DE_Drawing.m in Sources */ = {isa = PBXBuildFile; fileRef = 2444438D1B35DDDC00E725A9 /* DE_Drawing.m */; };
@@ -20,6 +22,7 @@
 		248F34E61B93CB45002722E0 /* DE_CheckBox.m in Sources */ = {isa = PBXBuildFile; fileRef = 248F34E51B93CB45002722E0 /* DE_CheckBox.m */; };
 		24BF09AB1B360EBB002AB758 /* DE_Background.m in Sources */ = {isa = PBXBuildFile; fileRef = 24BF09AA1B360EBB002AB758 /* DE_Background.m */; };
 		24D35AD91B38D6F000F06C9F /* DE_TextFieldCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 24D35AD81B38D6F000F06C9F /* DE_TextFieldCell.m */; };
+		24F0CAAE1B9D48D000CFA3E5 /* DE_PopUpButtonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 24F0CAAD1B9D48D000CFA3E5 /* DE_PopUpButtonCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -35,6 +38,10 @@
 /* Begin PBXFileReference section */
 		24160C331B534D0A0096F4E8 /* DE_SliderCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DE_SliderCell.h; path = ../DE_SliderCell.h; sourceTree = "<group>"; };
 		24160C341B534D0A0096F4E8 /* DE_SliderCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DE_SliderCell.m; path = ../DE_SliderCell.m; sourceTree = "<group>"; };
+		2421328A1B9C7FC60034739E /* DE_Matrix.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DE_Matrix.h; sourceTree = "<group>"; };
+		2421328B1B9C7FC60034739E /* DE_Matrix.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DE_Matrix.m; sourceTree = "<group>"; };
+		2421328D1B9C80B90034739E /* DE_MatrixCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DE_MatrixCell.h; sourceTree = "<group>"; };
+		2421328E1B9C80B90034739E /* DE_MatrixCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DE_MatrixCell.m; sourceTree = "<group>"; };
 		24300E221B9A7A7100347A22 /* DE_Box.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DE_Box.h; sourceTree = "<group>"; };
 		24300E231B9A7A7100347A22 /* DE_Box.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DE_Box.m; sourceTree = "<group>"; };
 		2436E4601B7D0E81004C5B28 /* DE_CheckBoxCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DE_CheckBoxCell.h; path = ../DE_CheckBoxCell.h; sourceTree = "<group>"; };
@@ -59,6 +66,8 @@
 		24BF09AA1B360EBB002AB758 /* DE_Background.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DE_Background.m; path = ../DE_Background.m; sourceTree = "<group>"; };
 		24D35AD71B38D6F000F06C9F /* DE_TextFieldCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DE_TextFieldCell.h; path = ../DE_TextFieldCell.h; sourceTree = "<group>"; };
 		24D35AD81B38D6F000F06C9F /* DE_TextFieldCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DE_TextFieldCell.m; path = ../DE_TextFieldCell.m; sourceTree = "<group>"; };
+		24F0CAAC1B9D48D000CFA3E5 /* DE_PopUpButtonCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DE_PopUpButtonCell.h; sourceTree = "<group>"; };
+		24F0CAAD1B9D48D000CFA3E5 /* DE_PopUpButtonCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DE_PopUpButtonCell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,7 +110,13 @@
 			isa = PBXGroup;
 			children = (
 				24160C331B534D0A0096F4E8 /* DE_SliderCell.h */,
+				24F0CAAC1B9D48D000CFA3E5 /* DE_PopUpButtonCell.h */,
+				24F0CAAD1B9D48D000CFA3E5 /* DE_PopUpButtonCell.m */,
 				24160C341B534D0A0096F4E8 /* DE_SliderCell.m */,
+				2421328D1B9C80B90034739E /* DE_MatrixCell.h */,
+				2421328E1B9C80B90034739E /* DE_MatrixCell.m */,
+				2421328A1B9C7FC60034739E /* DE_Matrix.h */,
+				2421328B1B9C7FC60034739E /* DE_Matrix.m */,
 				24D35AD71B38D6F000F06C9F /* DE_TextFieldCell.h */,
 				24D35AD81B38D6F000F06C9F /* DE_TextFieldCell.m */,
 				2481959B1B9B4A6900B2D8F4 /* DE_StepperCell.h */,
@@ -251,12 +266,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				246ECB111B325CEF00C2129D /* main.m in Sources */,
+				24F0CAAE1B9D48D000CFA3E5 /* DE_PopUpButtonCell.m in Sources */,
 				2436E4621B7D0E81004C5B28 /* DE_CheckBoxCell.m in Sources */,
 				246ECB0F1B325CEF00C2129D /* AppDelegate.m in Sources */,
+				2421328F1B9C80B90034739E /* DE_MatrixCell.m in Sources */,
 				24BF09AB1B360EBB002AB758 /* DE_Background.m in Sources */,
 				2444438E1B35DDDC00E725A9 /* DE_Drawing.m in Sources */,
 				24300E241B9A7A7100347A22 /* DE_Box.m in Sources */,
 				24D35AD91B38D6F000F06C9F /* DE_TextFieldCell.m in Sources */,
+				2421328C1B9C7FC60034739E /* DE_Matrix.m in Sources */,
 				24160C351B534D0A0096F4E8 /* DE_SliderCell.m in Sources */,
 				2481959D1B9B4A6900B2D8F4 /* DE_StepperCell.m in Sources */,
 				248F34E61B93CB45002722E0 /* DE_CheckBox.m in Sources */,

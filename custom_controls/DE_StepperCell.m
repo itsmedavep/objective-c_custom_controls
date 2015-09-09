@@ -11,10 +11,15 @@
 
 @implementation DE_StepperCell
 
+//- (void)setce
+
 - (void)drawWithFrame:(NSRect)cellFrame inView:(NSView *)controlView {
  
     //// General Declarations
     CGContextRef context = (CGContextRef)NSGraphicsContext.currentContext.graphicsPort;
+    
+    cellFrame.origin.x = 0.5;
+    cellFrame.origin.y = 0.5;
     
     //// Color Declarations
     NSColor* sliderThumbGradientColor = [NSColor colorWithCalibratedRed: 0.216 green: 0.216 blue: 0.216 alpha: 1];
@@ -25,7 +30,7 @@
     
     //// Rectangle Drawing
     CGFloat rectangleCornerRadius = 2;
-    NSRect rectangleRect = NSMakeRect(0, 0, (cellFrame.size.width), (cellFrame.size.height));
+    NSRect rectangleRect = NSMakeRect(0.5, 0.5, ((cellFrame.size.width) - 5), ((cellFrame.size.height) - 6));
     NSRect rectangleInnerRect = NSInsetRect(rectangleRect, rectangleCornerRadius, rectangleCornerRadius);
     NSBezierPath* rectanglePath = NSBezierPath.bezierPath;
     [rectanglePath moveToPoint: NSMakePoint(NSMinX(rectangleRect), NSMinY(rectangleRect))];
@@ -34,6 +39,7 @@
     [rectanglePath lineToPoint: NSMakePoint(NSMinX(rectangleRect), NSMaxY(rectangleRect))];
     [rectanglePath closePath];
     [sliderThumbGradient drawInBezierPath: rectanglePath angle: -90];
+
     
     ////// Rectangle Inner Shadow
     [NSGraphicsContext saveGraphicsState];
@@ -63,82 +69,29 @@
     [DE_Drawing.textBoxStrokeColor setStroke];
     [rectanglePath setLineWidth: 1];
     [rectanglePath stroke];
-    
-    
+
     //// chevronUpArrow
     {
         //// Rectangle 2 Drawing
         [NSGraphicsContext saveGraphicsState];
-        CGContextTranslateCTM(context, 9.5, 34.5);
+        CGContextTranslateCTM(context, NSMinX(cellFrame) + 5, NSMaxY(cellFrame) - 11);
         CGContextRotateCTM(context, 45 * M_PI / 180);
         
         NSBezierPath* rectangle2Path = [NSBezierPath bezierPathWithRoundedRect: NSMakeRect(-4, -1, 8, 2) xRadius: 1 yRadius: 1];
         [NSColor.whiteColor setFill];
         [rectangle2Path fill];
         
-        ////// Rectangle 2 Inner Shadow
-        [NSGraphicsContext saveGraphicsState];
-        NSRectClip(rectangle2Path.bounds);
-        CGContextSetShadowWithColor(context, CGSizeZero, 0, NULL);
-        
-        CGContextSetAlpha(context, DE_Drawing.textBoxEdgeHighligh.shadowColor.alphaComponent);
-        CGContextBeginTransparencyLayer(context, NULL);
-        {
-            NSShadow* opaqueShadow = NSShadow.alloc.init;
-            opaqueShadow.shadowColor = [DE_Drawing.textBoxEdgeHighligh.shadowColor colorWithAlphaComponent: 1];
-            opaqueShadow.shadowOffset = DE_Drawing.textBoxEdgeHighligh.shadowOffset;
-            opaqueShadow.shadowBlurRadius = DE_Drawing.textBoxEdgeHighligh.shadowBlurRadius;
-            [opaqueShadow set];
-            
-            CGContextSetBlendMode(context, kCGBlendModeSourceOut);
-            CGContextBeginTransparencyLayer(context, NULL);
-            
-            [opaqueShadow.shadowColor setFill];
-            [rectangle2Path fill];
-            
-            CGContextEndTransparencyLayer(context);
-        }
-        CGContextEndTransparencyLayer(context);
-        [NSGraphicsContext restoreGraphicsState];
-        
-        
         [NSGraphicsContext restoreGraphicsState];
         
         
         //// Rectangle 3 Drawing
         [NSGraphicsContext saveGraphicsState];
-        CGContextTranslateCTM(context, 13.5, 34.5);
+        CGContextTranslateCTM(context, NSMinX(cellFrame) + 9, NSMaxY(cellFrame) - 11);
         CGContextRotateCTM(context, -45 * M_PI / 180);
         
         NSBezierPath* rectangle3Path = [NSBezierPath bezierPathWithRoundedRect: NSMakeRect(-4, -1, 8, 2) xRadius: 1 yRadius: 1];
         [NSColor.whiteColor setFill];
         [rectangle3Path fill];
-        
-        ////// Rectangle 3 Inner Shadow
-        [NSGraphicsContext saveGraphicsState];
-        NSRectClip(rectangle3Path.bounds);
-        CGContextSetShadowWithColor(context, CGSizeZero, 0, NULL);
-        
-        CGContextSetAlpha(context, DE_Drawing.textBoxEdgeHighligh.shadowColor.alphaComponent);
-        CGContextBeginTransparencyLayer(context, NULL);
-        {
-            NSShadow* opaqueShadow = NSShadow.alloc.init;
-            opaqueShadow.shadowColor = [DE_Drawing.textBoxEdgeHighligh.shadowColor colorWithAlphaComponent: 1];
-            opaqueShadow.shadowOffset = DE_Drawing.textBoxEdgeHighligh.shadowOffset;
-            opaqueShadow.shadowBlurRadius = DE_Drawing.textBoxEdgeHighligh.shadowBlurRadius;
-            [opaqueShadow set];
-            
-            CGContextSetBlendMode(context, kCGBlendModeSourceOut);
-            CGContextBeginTransparencyLayer(context, NULL);
-            
-            [opaqueShadow.shadowColor setFill];
-            [rectangle3Path fill];
-            
-            CGContextEndTransparencyLayer(context);
-        }
-        CGContextEndTransparencyLayer(context);
-        [NSGraphicsContext restoreGraphicsState];
-        
         
         [NSGraphicsContext restoreGraphicsState];
     }
@@ -147,7 +100,7 @@
     //// chevronDownArrow
     {
         [NSGraphicsContext saveGraphicsState];
-        CGContextTranslateCTM(context, 11.5, 13.5);
+        CGContextTranslateCTM(context, NSMinX(cellFrame) + 7, NSMaxY(cellFrame) - 21.5);
         CGContextRotateCTM(context, 180 * M_PI / 180);
         
         
@@ -156,36 +109,10 @@
         [NSGraphicsContext saveGraphicsState];
         CGContextTranslateCTM(context, -2, 0);
         CGContextRotateCTM(context, 45 * M_PI / 180);
-        
+
         NSBezierPath* rectangle4Path = [NSBezierPath bezierPathWithRoundedRect: NSMakeRect(-4, -1, 8, 2) xRadius: 1 yRadius: 1];
         [NSColor.whiteColor setFill];
         [rectangle4Path fill];
-        
-        ////// Rectangle 4 Inner Shadow
-        [NSGraphicsContext saveGraphicsState];
-        NSRectClip(rectangle4Path.bounds);
-        CGContextSetShadowWithColor(context, CGSizeZero, 0, NULL);
-        
-        CGContextSetAlpha(context, DE_Drawing.textBoxEdgeHighligh.shadowColor.alphaComponent);
-        CGContextBeginTransparencyLayer(context, NULL);
-        {
-            NSShadow* opaqueShadow = NSShadow.alloc.init;
-            opaqueShadow.shadowColor = [DE_Drawing.textBoxEdgeHighligh.shadowColor colorWithAlphaComponent: 1];
-            opaqueShadow.shadowOffset = DE_Drawing.textBoxEdgeHighligh.shadowOffset;
-            opaqueShadow.shadowBlurRadius = DE_Drawing.textBoxEdgeHighligh.shadowBlurRadius;
-            [opaqueShadow set];
-            
-            CGContextSetBlendMode(context, kCGBlendModeSourceOut);
-            CGContextBeginTransparencyLayer(context, NULL);
-            
-            [opaqueShadow.shadowColor setFill];
-            [rectangle4Path fill];
-            
-            CGContextEndTransparencyLayer(context);
-        }
-        CGContextEndTransparencyLayer(context);
-        [NSGraphicsContext restoreGraphicsState];
-        
         
         [NSGraphicsContext restoreGraphicsState];
         
@@ -199,32 +126,6 @@
         [NSColor.whiteColor setFill];
         [rectangle5Path fill];
         
-        ////// Rectangle 5 Inner Shadow
-        [NSGraphicsContext saveGraphicsState];
-        NSRectClip(rectangle5Path.bounds);
-        CGContextSetShadowWithColor(context, CGSizeZero, 0, NULL);
-        
-        CGContextSetAlpha(context, DE_Drawing.textBoxEdgeHighligh.shadowColor.alphaComponent);
-        CGContextBeginTransparencyLayer(context, NULL);
-        {
-            NSShadow* opaqueShadow = NSShadow.alloc.init;
-            opaqueShadow.shadowColor = [DE_Drawing.textBoxEdgeHighligh.shadowColor colorWithAlphaComponent: 1];
-            opaqueShadow.shadowOffset = DE_Drawing.textBoxEdgeHighligh.shadowOffset;
-            opaqueShadow.shadowBlurRadius = DE_Drawing.textBoxEdgeHighligh.shadowBlurRadius;
-            [opaqueShadow set];
-            
-            CGContextSetBlendMode(context, kCGBlendModeSourceOut);
-            CGContextBeginTransparencyLayer(context, NULL);
-            
-            [opaqueShadow.shadowColor setFill];
-            [rectangle5Path fill];
-            
-            CGContextEndTransparencyLayer(context);
-        }
-        CGContextEndTransparencyLayer(context);
-        [NSGraphicsContext restoreGraphicsState];
-        
-        
         [NSGraphicsContext restoreGraphicsState];
         
         
@@ -234,13 +135,13 @@
     
     
     //// Rectangle 6 Drawing
-    NSBezierPath* rectangle6Path = [NSBezierPath bezierPathWithRect: NSMakeRect(3, 24, 17, 1)];
+    NSBezierPath* rectangle6Path = [NSBezierPath bezierPathWithRect: NSMakeRect(.5, ((cellFrame.size.height / 2) - 3), (cellFrame.size.width - 5), 1)];
     [NSGraphicsContext saveGraphicsState];
-    [DE_Drawing.textBoxEdgeHighligh set];
+//    [DE_Drawing.textBoxEdgeHighligh set];
     [DE_Drawing.textBoxStrokeColor setFill];
     [rectangle6Path fill];
     [NSGraphicsContext restoreGraphicsState];
-    
+
 }
 
 @end
